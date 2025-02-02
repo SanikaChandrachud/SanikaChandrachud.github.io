@@ -3,11 +3,9 @@
 # Build the project
 npm run build
 
-# Create gh-pages branch if it doesn't exist
-git checkout -b gh-pages
-
-# Move dist/public contents to root
-mv dist/public/* .
+# Since this is a username.github.io site, we don't need a separate branch
+# Copy build files directly to root
+cp -r dist/public/* .
 
 # Add .nojekyll file to bypass Jekyll processing
 touch .nojekyll
@@ -18,8 +16,5 @@ git add .
 # Commit changes
 git commit -m "Deploy to GitHub Pages"
 
-# Push to gh-pages branch
-git push origin gh-pages --force
-
-# Return to previous branch
-git checkout -
+# Push to main branch since this is username.github.io
+git push origin main --force
