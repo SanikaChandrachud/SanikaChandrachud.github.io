@@ -13,15 +13,18 @@ export default function HomePage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gray-900/70" />
-        <div className="container relative flex h-full items-center">
+        <div className="container relative flex h-full items-center justify-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-2xl text-white"
+            className="max-w-3xl mx-auto"
           >
-            <h1 className="mb-6 text-5xl font-bold">
-              Mechanical Design Engineering Excellence
+            <h1 className="mb-6 text-5xl font-bold text-white tracking-tight">
+              Engineering Portfolio
             </h1>
+            <h2 className="mb-4 text-4xl font-semibold text-white">
+              Mechanical Design Engineering Excellence
+            </h2>
             <p className="text-xl text-gray-200">
               Transforming innovative ideas into precision-engineered solutions
             </p>
@@ -36,7 +39,7 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="prose prose-lg mx-auto"
+            className="prose prose-lg mx-auto text-center"
           >
             <h2>Crafting Engineering Solutions</h2>
             <p>
