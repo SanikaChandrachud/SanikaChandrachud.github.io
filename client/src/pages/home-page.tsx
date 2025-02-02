@@ -24,8 +24,8 @@ export default function HomePage() {
           />
           <div className="absolute inset-0">
             <img
-              src="/images/HR-3641.jpg"
-              alt="Advanced Engineering and Innovation"
+              src="/images/hero-image.jpg"
+              alt="Product Engineering Excellence"
               className="w-full h-full object-cover object-center brightness-90"
             />
           </div>
