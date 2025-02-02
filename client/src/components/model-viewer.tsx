@@ -20,7 +20,8 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0xf0f0f0);
+    scene.background = new THREE.Color(0x1a1a1a);
+    scene.fog = new THREE.Fog(0x1a1a1a, 10, 50);
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -33,11 +34,19 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     camera.position.z = 15;
     camera.position.y = 5;
 
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Renderer setup with improved shadows
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: true,
+      alpha: true,
+      physicallyCorrectLights: true
+    });
     rendererRef.current = renderer;
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     containerRef.current.appendChild(renderer.domElement);
 
     // Controls setup
@@ -48,69 +57,99 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     controls.minDistance = 5;
     controls.maxDistance = 30;
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    // Enhanced lighting setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
     directionalLight.position.set(5, 5, 5);
     directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    directionalLight.shadow.camera.near = 0.5;
+    directionalLight.shadow.camera.far = 500;
     scene.add(directionalLight);
 
-    // Create gears
+    // Add point lights for metallic highlights
+    const pointLight1 = new THREE.PointLight(0x4477ff, 1.5);
+    pointLight1.position.set(0, 10, 0);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0xff7744, 1.5);
+    pointLight2.position.set(10, 0, 0);
+    scene.add(pointLight2);
+
+    // Create improved gears with better tooth profile
     function createGear(radius: number, teeth: number, height: number) {
       const shape = new THREE.Shape();
       const toothSize = (Math.PI * 2 * radius) / (teeth * 4);
+      const innerRadius = radius * 0.7; // Add inner radius for more realistic gears
+
+      // Create base circle
+      shape.moveTo(radius, 0);
 
       for (let i = 0; i < teeth; i++) {
         const angle = (i * Math.PI * 2) / teeth;
         const nextAngle = ((i + 1) * Math.PI * 2) / teeth;
 
-        if (i === 0) {
-          shape.moveTo(
-            Math.cos(angle) * radius,
-            Math.sin(angle) * radius
-          );
-        }
-
-        // Outer tooth
-        shape.lineTo(
-          Math.cos(angle + Math.PI / teeth) * (radius + toothSize),
-          Math.sin(angle + Math.PI / teeth) * (radius + toothSize)
+        // Create tooth profile with curved edges
+        shape.absarc(0, 0, radius, angle, angle + Math.PI/teeth/4, false);
+        shape.absarc(
+          Math.cos(angle + Math.PI/teeth/2) * (radius + toothSize),
+          Math.sin(angle + Math.PI/teeth/2) * (radius + toothSize),
+          toothSize/2,
+          angle - Math.PI/2,
+          angle + Math.PI/2,
+          true
         );
-
-        shape.lineTo(
-          Math.cos(nextAngle - Math.PI / teeth) * (radius + toothSize),
-          Math.sin(nextAngle - Math.PI / teeth) * (radius + toothSize)
-        );
-
-        shape.lineTo(
-          Math.cos(nextAngle) * radius,
-          Math.sin(nextAngle) * radius
-        );
+        shape.absarc(0, 0, radius, angle + Math.PI/teeth*3/4, nextAngle, false);
       }
 
+      // Add inner circle
+      const hole = new THREE.Path();
+      hole.absarc(0, 0, innerRadius, 0, Math.PI * 2, true);
+      shape.holes.push(hole);
+
       const extrudeSettings = {
-        steps: 1,
+        steps: 2,
         depth: height,
         bevelEnabled: true,
         bevelThickness: 0.2,
         bevelSize: 0.1,
-        bevelSegments: 3
+        bevelSegments: 5
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-      const material = new THREE.MeshPhongMaterial({
-        color: 0x6366f1,
-        metalness: 0.8,
-        roughness: 0.2,
+
+      // Create realistic metallic material
+      const material = new THREE.MeshStandardMaterial({
+        color: 0x888899,
+        metalness: 0.9,
+        roughness: 0.3,
+        envMapIntensity: 1,
+        side: THREE.DoubleSide
       });
 
-      return new THREE.Mesh(geometry, material);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+
+      return mesh;
     }
 
-    // Add multiple gears
-    const mainGear = createGear(3, 20, 0.5);
+    // Create environment map for realistic reflections
+    const envMap = new THREE.CubeTextureLoader().load([
+      'https://assets.codepen.io/12117/px.png',
+      'https://assets.codepen.io/12117/nx.png',
+      'https://assets.codepen.io/12117/py.png',
+      'https://assets.codepen.io/12117/ny.png',
+      'https://assets.codepen.io/12117/pz.png',
+      'https://assets.codepen.io/12117/nz.png',
+    ]);
+    scene.environment = envMap;
+
+    // Add multiple gears with different sizes
+    const mainGear = createGear(3, 24, 0.5);
     const secondaryGear = createGear(2, 16, 0.5);
     const tertiaryGear = createGear(2, 16, 0.5);
 
@@ -129,10 +168,10 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       requestAnimationFrame(animate);
       controls.update();
 
-      // Rotate gears
-      mainGear.rotation.z += 0.01;
-      secondaryGear.rotation.z -= 0.0125; // Opposite direction
-      tertiaryGear.rotation.z -= 0.0125;
+      // Rotate gears with smooth motion
+      mainGear.rotation.z += 0.005;
+      secondaryGear.rotation.z -= 0.0075;
+      tertiaryGear.rotation.z -= 0.0075;
 
       renderer.render(scene, camera);
     }
