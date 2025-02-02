@@ -1,6 +1,8 @@
 node_modules
-dist
 .DS_Store
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Keep dist/public for GitHub Pages
+!dist/public/
