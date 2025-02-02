@@ -13,24 +13,24 @@ const skills = [
 
 const certifications = [
   { 
-    name: "Professional Engineer (PE) License",
-    issuer: "State Board of Engineering",
-    year: "2023"
-  },
-  {
-    name: "Certified SolidWorks Professional (CSWP)",
+    name: "Certified SolidWorks Professional",
     issuer: "Dassault Systèmes",
     year: "2022"
   },
   {
-    name: "Six Sigma Green Belt",
-    issuer: "ASQ",
-    year: "2021"
+    name: "Certified Kuka Robot Programming 2",
+    issuer: "Kuka Robotics",
+    year: "2022"
   },
   {
-    name: "AutoCAD Certified Professional",
-    issuer: "Autodesk",
-    year: "2020"
+    name: "Certified Forklift Operator",
+    issuer: "WorkSafe Victoria",
+    year: "2023"
+  },
+  {
+    name: "Certified Sheetmetal Professional",
+    issuer: "Dassault Systèmes",
+    year: "2022"
   },
 ];
 
@@ -62,9 +62,9 @@ export default function AboutPage() {
               className="aspect-square relative rounded-lg overflow-hidden shadow-xl"
             >
               <img
-                src="/images/engineer-profile.svg"
-                alt="Professional Engineer"
-                className="w-full h-full object-cover"
+                src="/images/about-image.jpg"
+                alt="Professional Engineer at Work"
+                className="w-full h-full object-cover object-center"
               />
             </motion.div>
             <motion.div
@@ -74,10 +74,9 @@ export default function AboutPage() {
             >
               <h1 className="mb-6 text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">About Me</h1>
               <p className="mb-6 text-lg text-muted-foreground leading-relaxed">
-                As a woman in STEM, I've dedicated my career to pushing the
-                boundaries of mechanical engineering. With experience spanning
-                automotive design and robotics, I bring a unique perspective to
-                every project.
+                Product Engineer with over 3 years of experience in product design, development, and prototyping.
+                Specialized in advanced manufacturing technologies including 3D printing, laser cutting, and robotic systems.
+                Committed to pushing the boundaries of engineering innovation.
               </p>
               <div className="flex justify-center md:justify-start">
                 <Button
@@ -152,22 +151,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Beyond Engineering Section */}
+      {/* Education Section */}
       <section className="bg-muted py-20">
         <div className="container mx-auto max-w-6xl text-center">
-          <h2 className="mb-8 text-2xl font-bold">Beyond Engineering</h2>
+          <h2 className="mb-8 text-2xl font-bold">Education</h2>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="prose prose-lg mx-auto dark:prose-invert"
+            className="space-y-8"
           >
-            <p className="text-center mx-auto max-w-2xl">
-              When I'm not designing mechanical systems, you can find me mentoring
-              young women in STEM, participating in robotics competitions, and
-              exploring the intersection of art and engineering through metal
-              sculpture.
-            </p>
+            <div className="bg-card rounded-lg p-8 shadow-lg">
+              <h3 className="text-xl font-bold text-primary">Master of Engineering</h3>
+              <p className="text-lg font-semibold">Deakin University | 2020 - 2022</p>
+              <ul className="mt-4 text-muted-foreground space-y-2 text-left list-disc list-inside">
+                <li>Dual Specialization in Product Design and Additive Manufacturing</li>
+                <li>Vice Chancellor's Professional Excellence Scholar with 100% meritorious scholarship</li>
+                <li>Postgraduate Student Award and Project Excellence Award recipient</li>
+              </ul>
+            </div>
+            <div className="bg-card rounded-lg p-8 shadow-lg">
+              <h3 className="text-xl font-bold text-primary">Bachelor of Engineering (Mechanical)</h3>
+              <p className="text-lg font-semibold">Pune University | 2015 - 2019</p>
+              <ul className="mt-4 text-muted-foreground space-y-2 text-left list-disc list-inside">
+                <li>Graduated with first class distinction (8.5 GPA)</li>
+                <li>National finalist in Aakruti 2019</li>
+                <li>Presented at Solidworks World 2019 in Dallas</li>
+              </ul>
+            </div>
           </motion.div>
         </div>
       </section>
