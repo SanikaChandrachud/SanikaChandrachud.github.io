@@ -14,13 +14,12 @@ export default function HomePage() {
           transition={{ duration: 1.5 }}
           className="absolute inset-0"
         >
-          <img
-            src="/images/3d-printing-future.jpg"
-            alt="Advanced 3D Printing Technology"
-            className="absolute inset-0 h-full w-full object-cover object-center brightness-90"
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url("/images/tech-pattern.svg")' }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/70 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
@@ -90,14 +89,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                <img
-                  src="/tech-woman.jpg"
-                  alt="Engineer working with advanced technology"
-                  className="w-full h-[400px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-              </div>
+              <ModelViewer className="shadow-xl rounded-lg" />
             </motion.div>
           </div>
         </div>
