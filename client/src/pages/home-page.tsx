@@ -15,7 +15,7 @@ export default function HomePage() {
           className="absolute inset-0"
         >
           <img
-            src="/3d-printing-future.jpg"
+            src="/images/3d-printing-future.jpg"
             alt="Advanced 3D Printing Technology"
             className="absolute inset-0 h-full w-full object-cover object-center brightness-90"
           />
