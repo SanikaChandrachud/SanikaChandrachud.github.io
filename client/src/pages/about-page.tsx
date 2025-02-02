@@ -51,42 +51,45 @@ const item = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background px-4 md:px-8">
       {/* Hero Section */}
       <section className="bg-muted py-20">
-        <div className="container">
-          <div className="grid gap-12 md:grid-cols-2">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid gap-12 md:grid-cols-2 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
+              className="aspect-square relative rounded-lg overflow-hidden shadow-xl"
             >
               <img
-                src="/images/engineer-profile.jpg"
-                alt="Woman Engineer"
-                className="rounded-lg object-cover shadow-lg"
+                src="/images/engineer-profile.svg"
+                alt="Professional Engineer"
+                className="w-full h-full object-cover"
               />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex flex-col justify-center"
+              className="flex flex-col justify-center text-center md:text-left"
             >
-              <h1 className="mb-6 text-4xl font-bold">About Me</h1>
-              <p className="mb-6 text-lg text-muted-foreground">
+              <h1 className="mb-6 text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">About Me</h1>
+              <p className="mb-6 text-lg text-muted-foreground leading-relaxed">
                 As a woman in STEM, I've dedicated my career to pushing the
                 boundaries of mechanical engineering. With experience spanning
                 automotive design and robotics, I bring a unique perspective to
                 every project.
               </p>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-fit"
-                onClick={() => window.open("/resume.pdf")}
-              >
-                <FileDown className="mr-2 h-4 w-4" />
-                Download Resume
-              </Button>
+              <div className="flex justify-center md:justify-start">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="group hover:scale-105 transition-transform"
+                  onClick={() => window.open("/resume.pdf")}
+                >
+                  <FileDown className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  Download Resume
+                </Button>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -94,15 +97,16 @@ export default function AboutPage() {
 
       {/* Skills & Certifications */}
       <section className="py-20">
-        <div className="container">
+        <div className="container mx-auto max-w-6xl">
           <div className="grid gap-12 md:grid-cols-2">
             <motion.div
               variants={container}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
+              className="space-y-6 text-center"
             >
-              <h2 className="mb-8 text-2xl font-bold flex items-center">
+              <h2 className="text-2xl font-bold flex items-center justify-center">
                 <Wrench className="mr-2 h-6 w-6" />
                 Technical Skills
               </h2>
@@ -111,7 +115,7 @@ export default function AboutPage() {
                   <motion.div
                     key={index}
                     variants={item}
-                    className="flex items-center rounded-lg bg-card p-4 text-card-foreground shadow-lg hover:shadow-xl transition-shadow"
+                    className="flex items-center justify-center p-4 rounded-lg bg-card hover:bg-primary/5 text-card-foreground shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <skill.icon className="mr-3 h-5 w-5" />
                     <span>{skill.name}</span>
@@ -124,8 +128,9 @@ export default function AboutPage() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
+              className="space-y-6 text-center"
             >
-              <h2 className="mb-8 text-2xl font-bold flex items-center">
+              <h2 className="text-2xl font-bold flex items-center justify-center">
                 <Award className="mr-2 h-6 w-6" />
                 Certifications
               </h2>
@@ -134,7 +139,7 @@ export default function AboutPage() {
                   <motion.div
                     key={index}
                     variants={item}
-                    className="rounded-lg bg-card p-6 text-card-foreground shadow-lg hover:shadow-xl transition-shadow"
+                    className="p-6 rounded-lg bg-card hover:bg-primary/5 text-card-foreground shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <h3 className="font-bold">{cert.name}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{cert.issuer}</p>
@@ -147,17 +152,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Hobbies Section */}
+      {/* Beyond Engineering Section */}
       <section className="bg-muted py-20">
-        <div className="container">
+        <div className="container mx-auto max-w-6xl text-center">
           <h2 className="mb-8 text-2xl font-bold">Beyond Engineering</h2>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="prose prose-lg mx-auto"
+            className="prose prose-lg mx-auto dark:prose-invert"
           >
-            <p>
+            <p className="text-center mx-auto max-w-2xl">
               When I'm not designing mechanical systems, you can find me mentoring
               young women in STEM, participating in robotics competitions, and
               exploring the intersection of art and engineering through metal
