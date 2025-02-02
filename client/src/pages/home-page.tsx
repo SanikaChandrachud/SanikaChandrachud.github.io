@@ -8,8 +8,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1615870123253-f3de8aa89e24"
-          alt="3D Printing Technology Schematic"
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+          alt="Digital Manufacturing Technology"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
