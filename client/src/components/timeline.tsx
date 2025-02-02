@@ -43,12 +43,12 @@ export default function Timeline() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-12">
       <div className="relative">
-        {/* Center line */}
+        {/* Center line with animated gradient */}
         <motion.div 
-          className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"
+          className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary via-primary/50 to-primary/20"
           initial={{ height: 0 }}
           animate={{ height: "100%" }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
         />
 
         <div className="space-y-16">
@@ -65,29 +65,65 @@ export default function Timeline() {
               {/* Content */}
               <div className={`flex-1 ${index % 2 === 0 ? "text-right" : "text-left"}`}>
                 <motion.div
-                  className="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                  whileHover={{ scale: 1.02 }}
+                  className="group bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.02,
+                    backgroundColor: "var(--primary)",
+                    color: "var(--primary-foreground)",
+                  }}
                   initial={{ x: index % 2 === 0 ? 50 : -50 }}
                   animate={{ x: 0 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ 
+                    duration: 0.5,
+                    scale: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
+                    }
+                  }}
                 >
-                  <h3 className="text-xl font-bold text-primary">{event.title}</h3>
-                  <h4 className="text-lg text-muted-foreground font-semibold mt-1">{event.subtitle}</h4>
-                  <p className="text-muted-foreground mt-2">{event.description}</p>
-                  <p className="text-sm font-semibold mt-2 text-primary/80">{event.year}</p>
+                  <h3 className="text-xl font-bold group-hover:text-primary-foreground transition-colors">
+                    {event.title}
+                  </h3>
+                  <h4 className="text-lg group-hover:text-primary-foreground/90 font-semibold mt-1">
+                    {event.subtitle}
+                  </h4>
+                  <p className="group-hover:text-primary-foreground/80 mt-2 transition-colors">
+                    {event.description}
+                  </p>
+                  <p className="text-sm font-semibold mt-2 group-hover:text-primary-foreground/70 transition-colors">
+                    {event.year}
+                  </p>
                 </motion.div>
               </div>
 
-              {/* Center Icon */}
+              {/* Center Icon with pulse effect */}
               <motion.div
                 className="relative z-10"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: index * 0.3 + 0.2 }}
+                whileHover={{ scale: 1.1 }}
               >
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                <motion.div
+                  className="w-12 h-12 rounded-full bg-primary flex items-center justify-center"
+                  whileHover={{ 
+                    boxShadow: "0 0 0 4px rgba(var(--primary), 0.2)",
+                  }}
+                >
                   <event.icon className="h-6 w-6 text-primary-foreground" />
-                </div>
+                </motion.div>
+                {/* Pulse effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-primary"
+                  initial={{ opacity: 0.3, scale: 1 }}
+                  animate={{ opacity: 0, scale: 1.5 }}
+                  transition={{ 
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeOut"
+                  }}
+                />
               </motion.div>
 
               {/* Empty space for alignment */}
