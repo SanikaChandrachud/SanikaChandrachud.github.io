@@ -11,6 +11,7 @@ import AboutPage from "@/pages/about-page";
 import AdminPage from "@/pages/admin-page";
 import AuthPage from "@/pages/auth-page";
 import NotFound from "@/pages/not-found";
+import ParallaxBackground from "@/components/parallax-background";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <ParallaxBackground />
         <Router />
         <Toaster />
       </AuthProvider>
