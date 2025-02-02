@@ -22,9 +22,9 @@ const ParallaxBackground = () => {
 
   // Define parallax layers with different depths and positions
   const layers = useMemo(() => [
-    { depth: 1, opacity: 0.15, scale: 1.1 },
-    { depth: 0.8, opacity: 0.1, scale: 1.2 },
-    { depth: 0.6, opacity: 0.08, scale: 1.3 },
+    { depth: 1, opacity: 0.4, scale: 1.1 },
+    { depth: 0.8, opacity: 0.3, scale: 1.2 },
+    { depth: 0.6, opacity: 0.2, scale: 1.3 },
   ], []);
 
   const parallaxElements = layers.map((layer) => ({
@@ -33,7 +33,7 @@ const ParallaxBackground = () => {
   }));
 
   return (
-    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden bg-background">
+    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden bg-[#1a1a1a]">
       {parallaxElements.map((element, index) => (
         <motion.div
           key={index}
@@ -46,15 +46,15 @@ const ParallaxBackground = () => {
           <div 
             className="w-full h-full bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/images/manufacturing-bg.png")',
+              backgroundImage: 'url("/images/tech-manufacturing.png")',
               opacity: element.opacity,
+              filter: 'brightness(0.8) contrast(1.2)'
             }}
           />
         </motion.div>
       ))}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/90"
-        style={{ mixBlendMode: 'overlay' }}
+        className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/80 via-[#1a1a1a]/60 to-[#1a1a1a]/90"
       />
     </div>
   );
