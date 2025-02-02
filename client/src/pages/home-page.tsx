@@ -18,8 +18,8 @@ export default function HomePage() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: 'url("/images/tech-pattern.svg")' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/70 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-900/50 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
@@ -28,7 +28,7 @@ export default function HomePage() {
             className="max-w-3xl mx-auto"
           >
             <motion.h1 
-              className="mb-6 text-4xl sm:text-5xl font-bold text-white tracking-tight"
+              className="mb-6 text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 tracking-tight"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -36,7 +36,7 @@ export default function HomePage() {
               Engineering Portfolio
             </motion.h1>
             <motion.h2 
-              className="mb-4 text-3xl sm:text-4xl font-semibold text-white"
+              className="mb-4 text-3xl sm:text-4xl font-semibold text-white/90"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -44,7 +44,7 @@ export default function HomePage() {
               Mechanical Design Engineering Excellence
             </motion.h2>
             <motion.p 
-              className="text-lg sm:text-xl text-gray-200"
+              className="text-lg sm:text-xl text-blue-100/80"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ 
