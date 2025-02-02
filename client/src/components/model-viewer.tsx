@@ -20,8 +20,8 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0x1a1a1a);
-    scene.fog = new THREE.Fog(0x1a1a1a, 10, 50);
+    scene.background = new THREE.Color(0xf5f5f5); // Light background
+    scene.fog = new THREE.Fog(0xf5f5f5, 15, 50);
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -46,7 +46,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.0;
     containerRef.current.appendChild(renderer.domElement);
 
     // Controls setup
@@ -57,11 +57,11 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     controls.minDistance = 5;
     controls.maxDistance = 30;
 
-    // Enhanced lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+    // Enhanced lighting setup for metallic materials
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
     directionalLight.position.set(5, 5, 5);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
@@ -71,38 +71,54 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     scene.add(directionalLight);
 
     // Add point lights for metallic highlights
-    const pointLight1 = new THREE.PointLight(0x4477ff, 1.5);
+    const pointLight1 = new THREE.PointLight(0x4477ff, 1.0);
     pointLight1.position.set(0, 10, 0);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0xff7744, 1.5);
+    const pointLight2 = new THREE.PointLight(0xff7744, 1.0);
     pointLight2.position.set(10, 0, 0);
     scene.add(pointLight2);
 
-    // Create improved gears with better tooth profile
+    // Create improved gears with involute tooth profile
     function createGear(radius: number, teeth: number, height: number) {
       const shape = new THREE.Shape();
       const toothSize = (Math.PI * 2 * radius) / (teeth * 4);
-      const innerRadius = radius * 0.7; // Add inner radius for more realistic gears
+      const innerRadius = radius * 0.7;
+      const pressureAngle = Math.PI / 9; // 20 degrees pressure angle
+      const numPoints = 20; // Points per tooth for smooth curve
+
+      // Helper function to create involute curve point
+      function involutePoint(radius: number, angle: number) {
+        const inv = angle * Math.tan(pressureAngle) - angle;
+        const x = radius * (Math.cos(angle) + inv * Math.sin(angle));
+        const y = radius * (Math.sin(angle) - inv * Math.cos(angle));
+        return { x, y };
+      }
 
       // Create base circle
       shape.moveTo(radius, 0);
 
       for (let i = 0; i < teeth; i++) {
-        const angle = (i * Math.PI * 2) / teeth;
-        const nextAngle = ((i + 1) * Math.PI * 2) / teeth;
+        const angleStep = (Math.PI * 2) / teeth;
+        const startAngle = i * angleStep;
 
-        // Create tooth profile with curved edges
-        shape.absarc(0, 0, radius, angle, angle + Math.PI/teeth/4, false);
-        shape.absarc(
-          Math.cos(angle + Math.PI/teeth/2) * (radius + toothSize),
-          Math.sin(angle + Math.PI/teeth/2) * (radius + toothSize),
-          toothSize/2,
-          angle - Math.PI/2,
-          angle + Math.PI/2,
-          true
-        );
-        shape.absarc(0, 0, radius, angle + Math.PI/teeth*3/4, nextAngle, false);
+        // Create involute profile for each tooth
+        for (let j = 0; j < numPoints; j++) {
+          const t = j / (numPoints - 1);
+          const angle = startAngle + angleStep * t;
+          const point = involutePoint(radius, angle);
+
+          if (j === 0) {
+            shape.lineTo(point.x, point.y);
+          } else {
+            shape.bezierCurveTo(
+              point.x, point.y,
+              point.x, point.y,
+              point.x + toothSize * Math.cos(angle + Math.PI/2),
+              point.y + toothSize * Math.sin(angle + Math.PI/2)
+            );
+          }
+        }
       }
 
       // Add inner circle
@@ -111,22 +127,22 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       shape.holes.push(hole);
 
       const extrudeSettings = {
-        steps: 2,
+        steps: 4,
         depth: height,
         bevelEnabled: true,
         bevelThickness: 0.2,
         bevelSize: 0.1,
-        bevelSegments: 5
+        bevelSegments: 8
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
 
       // Create realistic metallic material
       const material = new THREE.MeshStandardMaterial({
-        color: 0x888899,
+        color: 0x95A5A6,
         metalness: 0.9,
-        roughness: 0.3,
-        envMapIntensity: 1,
+        roughness: 0.4,
+        envMapIntensity: 1.0,
         side: THREE.DoubleSide
       });
 
@@ -139,19 +155,19 @@ export default function ModelViewer({ className }: ModelViewerProps) {
 
     // Create environment map for realistic reflections
     const envMap = new THREE.CubeTextureLoader().load([
-      'https://assets.codepen.io/12117/px.png',
-      'https://assets.codepen.io/12117/nx.png',
-      'https://assets.codepen.io/12117/py.png',
-      'https://assets.codepen.io/12117/ny.png',
-      'https://assets.codepen.io/12117/pz.png',
-      'https://assets.codepen.io/12117/nz.png',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/px.jpg',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/nx.jpg',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/py.jpg',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/ny.jpg',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/pz.jpg',
+      'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/nz.jpg',
     ]);
     scene.environment = envMap;
 
     // Add multiple gears with different sizes
-    const mainGear = createGear(3, 24, 0.5);
-    const secondaryGear = createGear(2, 16, 0.5);
-    const tertiaryGear = createGear(2, 16, 0.5);
+    const mainGear = createGear(3, 32, 0.5);
+    const secondaryGear = createGear(2, 24, 0.5);
+    const tertiaryGear = createGear(2, 24, 0.5);
 
     // Position gears
     secondaryGear.position.set(5.2, 0, 0);
@@ -169,9 +185,9 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       controls.update();
 
       // Rotate gears with smooth motion
-      mainGear.rotation.z += 0.005;
-      secondaryGear.rotation.z -= 0.0075;
-      tertiaryGear.rotation.z -= 0.0075;
+      mainGear.rotation.z += 0.003;
+      secondaryGear.rotation.z -= 0.0045;
+      tertiaryGear.rotation.z -= 0.0045;
 
       renderer.render(scene, camera);
     }

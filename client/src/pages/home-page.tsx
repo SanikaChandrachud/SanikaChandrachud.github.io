@@ -9,8 +9,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-          alt="Digital Manufacturing Technology"
+          src="/engineering-hero.jpg"
+          alt="3D Printing Technology"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
@@ -20,15 +20,35 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto"
           >
-            <h1 className="mb-6 text-4xl sm:text-5xl font-bold text-white tracking-tight">
+            <motion.h1 
+              className="mb-6 text-4xl sm:text-5xl font-bold text-white tracking-tight"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               Engineering Portfolio
-            </h1>
-            <h2 className="mb-4 text-3xl sm:text-4xl font-semibold text-white">
+            </motion.h1>
+            <motion.h2 
+              className="mb-4 text-3xl sm:text-4xl font-semibold text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               Mechanical Design Engineering Excellence
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-200">
+            </motion.h2>
+            <motion.p 
+              className="text-lg sm:text-xl text-gray-200"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: 0.6,
+                type: "spring",
+                stiffness: 100 
+              }}
+            >
               Transforming innovative ideas into precision-engineered solutions
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -38,9 +58,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:gap-12 md:grid-cols-2 items-center">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
               className="prose prose-lg max-w-none"
             >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">Crafting Engineering Solutions</h2>
@@ -55,7 +76,7 @@ export default function HomePage() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
               <ModelViewer className="shadow-xl rounded-lg" />
             </motion.div>
@@ -66,10 +87,16 @@ export default function HomePage() {
       {/* Journey Section */}
       <section className="relative bg-muted py-12 sm:py-20">
         <GearAnimation />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div 
+          className="container mx-auto px-4 sm:px-6 lg:px-8 relative"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="mb-8 sm:mb-12 text-2xl sm:text-3xl font-bold text-center">Professional Journey</h2>
           <Timeline />
-        </div>
+        </motion.div>
       </section>
     </div>
   );
