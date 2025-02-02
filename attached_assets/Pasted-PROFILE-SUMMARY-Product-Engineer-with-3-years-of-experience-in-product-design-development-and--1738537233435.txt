@@ -1,0 +1,60 @@
+PROFILE SUMMARY
+•	Product Engineer with 3+ years of experience in product design, development, and prototyping.
+•	Regularly use and operate 3D printers, laser cutting machines, panbrake press, and power tools.
+•	Certified SolidWorks Professional, Certified Sheetmetal, Weldments and Drawings Professional.
+•	Certified Kuka Robot Programming 2. Ability to work with cobots – UR10e, TM12, TM14.
+•	Master’s degree specializing in Product Design and Additive Manufacturing.
+•	Key Skills – Design Thinking, DFX Principles, Solidworks (CAD and Simulation), programming (C++ and python)
+EXPERIENCE
+Product Engineer (Mechanical) | ManuFutures	DEC 2022 – PRESENT
+•	Spearheaded 2 data capture and consolidation activities for large production companies to determine project scope for effective and strategic execution.
+•	Engaged with stakeholders to identify industry gaps and needs to create project scope, resource utilization plan and project costs. Learned to implement project management skills for 2 small projects.
+•	Took ownership of 6 projects by successful implementation of design principles to develop prototypes or minimum viable products. Utilized rapid prototyping technologies - 3D printing and laser cutting. 
+•	Created CAD models in SolidWorks, implemented configuration-based design, decided appropriate manufacturing technologies and materials for products, while taking make-or-buy decisions.
+•	Implemented design for manufacturing principles for sheet metal fabrication, 3D printing and injection moulding.
+•	Conducted DFMEA and static FEA simulations for design improvements and validation.
+•	Documented and created several reports for closing out of projects with clients.
+•	Utilized specialist equipments - 3D printers, sandblaster, laser cutter, bending machine, dyeing machine, cobots to manufacture and prototype according to tenant requirements. 
+•	Worked to develop good relations with vendors, suppliers, clients and other departments within Deakin.
+
+Design Engineer | Dispotronics	MAR 2021 – DEC 2021
+•	Formulated product specifications based on clients’ sensor requirements to increase company turnover by 150%.
+•	Reverse Engineering and CAD modelling using Siemens NX of existing product range of 20+ products for catalogue creation.
+•	Design and development of custom wheelchair design for senior bedridden folk, providing ideal user experience. 
+•	Methodical creation of engineering change documents, PPAP, PFMEA and DFMEA.
+
+Simulia Developer | Dassault Systemes	JUL 2019 – FEB 2021
+•	Worked in a 9-member team to develop solution for optimizing CAD model with Numerical Methods of Optimisation.
+•	Utilized Object Oriented Programming using Model View Controller software architecture in C++.
+•	Acted as point of contact and mentor for all-girls high school in design engineering competition hosted by Dassault
+EDUCATION
+Master of Engineering | Deakin University	NOV 2020 – OCT 2022
+•	Dual Specialization in Product Design and Additive Manufacturing.
+•	Deakin Vice Chancellor’s Professional Excellence Scholar, with 100% meritorious scholarship.
+•	Postgraduate Student Award and Postgraduate Student Project Excellence Award.
+•	30-day internship at Conflux Technologies, focused on quality control testing of Metal 3D Prints and improvements in print quality.
+
+Bachelor of Engineering (Mechanical) | Pune University	AUG 2015 – JUN 2019
+•	Graduated with first class distinction and 8.5 GPA.
+•	30-day internship at Atlas Copco Gecia, performed multi-iteration vibration analyses to study resonance during machining.
+•	Conducted multi-variate Design of Experiments to scientifically provide an eco-friendly alternative for detergent (utensil). Designed innovative sheet-metal machinery for large scale production with a B2C business model. National top 12 design finalist amongst 1000 projects in Aakruti 2019. Presented at Solidworks World 2019 at Dallas, Texas.
+•	Designed and manufactured an ATV for intercollegiate racing and endurance-based competition BAJA 2017.Implemented Ackermann steering mechanism for the car.
+
+SKILLS 
+	Certified Forklift Operator (WorkSafe Victoria)
+	Certified Solidworks Professional
+	Certified in programming for Kuka.
+	Trained to operate 3D Printers, Laser cutter, CNC Mill, Cobots.	  
+	Project Management
+	Time management
+	C++, Python 
+ACTIVITIES
+•	Excited participant for any sports, mostly basketball, table tennis, volleyball. 
+•	Beginner surfer, hiker and enthusiastic swimmer
+•	Voracious reader 
+REFERENCES
+	Glynn Atkinson (glynn.atkinson@deakin.edu.au)
+Senior Manager, ManuFutures, Deakin University
+	Siva Krishnan (siva.krishnan@deakin.edu.au)
+Associate Head of School of Engineering, Deakin University
+

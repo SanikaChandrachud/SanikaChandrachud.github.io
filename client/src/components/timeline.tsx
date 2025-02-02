@@ -3,29 +3,40 @@ import { Briefcase, GraduationCap } from "lucide-react";
 
 const timelineEvents = [
   {
-    year: "2018",
-    title: "Bachelor's in Mechanical Engineering",
-    description: "Graduated with honors",
+    year: "Dec 2022 - Present",
+    title: "Product Engineer (Mechanical)",
+    subtitle: "ManuFutures",
+    description: "Leading product development and prototyping using advanced manufacturing technologies. Expertise in 3D printing, laser cutting, and robotic systems.",
+    icon: Briefcase,
+  },
+  {
+    year: "2020 - 2022",
+    title: "Master of Engineering",
+    subtitle: "Deakin University",
+    description: "Dual Specialization in Product Design and Additive Manufacturing. Vice Chancellor's Professional Excellence Scholar with 100% meritorious scholarship.",
     icon: GraduationCap,
   },
   {
-    year: "2018-2020",
+    year: "Mar 2021 - Dec 2021",
     title: "Design Engineer",
-    description: "Worked on automotive projects",
+    subtitle: "Dispotronics",
+    description: "Led product specifications and development, increasing company turnover by 150%. Expertise in CAD modeling and custom design solutions.",
     icon: Briefcase,
   },
   {
-    year: "2020-2022",
-    title: "Master's in Mechanical Engineering",
-    description: "Specialized in robotics",
+    year: "Jul 2019 - Feb 2021",
+    title: "Simulia Developer",
+    subtitle: "Dassault Systemes",
+    description: "Developed optimization solutions for CAD models using C++ and Object Oriented Programming. Mentored high school students in design engineering.",
+    icon: Briefcase,
+  },
+  {
+    year: "2015 - 2019",
+    title: "Bachelor of Engineering (Mechanical)",
+    subtitle: "Pune University",
+    description: "Graduated with first class distinction (8.5 GPA). National finalist in Aakruti 2019, presented at Solidworks World 2019 in Dallas.",
     icon: GraduationCap,
-  },
-  {
-    year: "2022-Present",
-    title: "Senior Design Engineer",
-    description: "Leading innovation projects",
-    icon: Briefcase,
-  },
+  }
 ];
 
 export default function Timeline() {
@@ -61,8 +72,9 @@ export default function Timeline() {
                   transition={{ duration: 0.5 }}
                 >
                   <h3 className="text-xl font-bold text-primary">{event.title}</h3>
+                  <h4 className="text-lg text-muted-foreground font-semibold mt-1">{event.subtitle}</h4>
                   <p className="text-muted-foreground mt-2">{event.description}</p>
-                  <p className="text-sm font-semibold mt-2">{event.year}</p>
+                  <p className="text-sm font-semibold mt-2 text-primary/80">{event.year}</p>
                 </motion.div>
               </div>
 

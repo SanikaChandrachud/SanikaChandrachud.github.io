@@ -1,0 +1,22 @@
+EXPERIENCE
+Product Engineer (Mechanical) | ManuFutures	DEC 2022 – PRESENT
+•	Spearheaded 2 data capture and consolidation activities for large production companies to determine project scope for effective and strategic execution.
+•	Engaged with stakeholders to identify industry gaps and needs to create project scope, resource utilization plan and project costs. Learned to implement project management skills for 2 small projects.
+•	Took ownership of 6 projects by successful implementation of design principles to develop prototypes or minimum viable products. Utilized rapid prototyping technologies - 3D printing and laser cutting. 
+•	Created CAD models in SolidWorks, implemented configuration-based design, decided appropriate manufacturing technologies and materials for products, while taking make-or-buy decisions.
+•	Implemented design for manufacturing principles for sheet metal fabrication, 3D printing and injection moulding.
+•	Conducted DFMEA and static FEA simulations for design improvements and validation.
+•	Documented and created several reports for closing out of projects with clients.
+•	Utilized specialist equipments - 3D printers, sandblaster, laser cutter, bending machine, dyeing machine, cobots to manufacture and prototype according to tenant requirements. 
+•	Worked to develop good relations with vendors, suppliers, clients and other departments within Deakin.
+
+Design Engineer | Dispotronics	MAR 2021 – DEC 2021
+•	Formulated product specifications based on clients’ sensor requirements to increase company turnover by 150%.
+•	Reverse Engineering and CAD modelling using Siemens NX of existing product range of 20+ products for catalogue creation.
+•	Design and development of custom wheelchair design for senior bedridden folk, providing ideal user experience. 
+•	Methodical creation of engineering change documents, PPAP, PFMEA and DFMEA.
+
+Simulia Developer | Dassault Systemes	JUL 2019 – FEB 2021
+•	Worked in a 9-member team to develop solution for optimizing CAD model with Numerical Methods of Optimisation.
+•	Utilized Object Oriented Programming using Model View Controller software architecture in C++.
+•	Acted as point of contact and mentor for all-girls high school in design engineering competition hosted by Dassault

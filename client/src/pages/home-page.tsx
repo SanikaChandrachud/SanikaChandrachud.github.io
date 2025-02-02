@@ -2,7 +2,7 @@ import Timeline from "@/components/timeline";
 import { motion } from "framer-motion";
 import ParallaxBackground from "@/components/parallax-background";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, GraduationCap, Award } from "lucide-react";
+import { ArrowRight, Briefcase, GraduationCap, Wrench, Cpu, Code } from "lucide-react";
 import { Link } from "wouter";
 
 export default function HomePage() {
@@ -24,7 +24,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0">
             <img
-              src="/images/hero-image.jpg"
+              src="/images/HR-3641 (1).jpg"
               alt="Advanced Engineering and Innovation"
               className="w-full h-full object-cover object-center brightness-90"
             />
@@ -44,7 +44,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              Engineering Portfolio
+              Product Engineering Excellence
             </motion.h1>
             <motion.h2 
               className="mb-4 text-3xl sm:text-4xl font-semibold text-white/90"
@@ -52,7 +52,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Advanced Manufacturing & Design
+              Design • Prototype • Innovate
             </motion.h2>
             <motion.p 
               className="text-lg sm:text-xl text-blue-100/80 mb-8"
@@ -60,7 +60,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Innovating through precision engineering and cutting-edge technology
+              Professional Product Engineer specializing in advanced manufacturing and design thinking
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -89,30 +89,29 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold mb-4">Areas of Expertise</h2>
-            <p className="text-muted-foreground">Specializing in mechanical design and advanced manufacturing</p>
+            <p className="text-muted-foreground">Certified professional with diverse technical skills</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Add expertise cards based on resume content */}
             <ExpertiseCard
-              icon={<Briefcase className="h-8 w-8" />}
-              title="Mechanical Design"
-              description="Expert in CAD/CAM software, mechanical systems design, and prototype development"
-            />
-            <ExpertiseCard
-              icon={<GraduationCap className="h-8 w-8" />}
+              icon={<Wrench className="h-8 w-8" />}
               title="Advanced Manufacturing"
-              description="Proficient in additive manufacturing, CNC machining, and production optimization"
+              description="Expert in 3D printing, laser cutting, sheet metal fabrication, and operating industrial equipment"
             />
             <ExpertiseCard
-              icon={<Award className="h-8 w-8" />}
-              title="Project Leadership"
-              description="Successfully led cross-functional teams in complex engineering projects"
+              icon={<Cpu className="h-8 w-8" />}
+              title="Robotics & Automation"
+              description="Certified in Kuka Robot Programming 2, experienced with cobots including UR10e, TM12, TM14"
+            />
+            <ExpertiseCard
+              icon={<Code className="h-8 w-8" />}
+              title="Design & Development"
+              description="Certified SolidWorks Professional with expertise in CAD, simulation, and DFX principles"
             />
           </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
+      {/* Achievements Section */}
       <section className="py-20 bg-muted/30 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -122,8 +121,8 @@ export default function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">Professional Journey</h2>
-            <p className="text-muted-foreground">A timeline of my engineering career and achievements</p>
+            <h2 className="text-3xl font-bold mb-4">Education & Experience</h2>
+            <p className="text-muted-foreground">A journey of academic excellence and professional growth</p>
           </motion.div>
           <Timeline />
         </div>
