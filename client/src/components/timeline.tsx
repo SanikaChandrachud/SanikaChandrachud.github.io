@@ -68,8 +68,7 @@ export default function Timeline() {
                   className="group bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                   whileHover={{ 
                     scale: 1.02,
-                    backgroundColor: "var(--primary)",
-                    color: "var(--primary-foreground)",
+                    backgroundColor: "var(--primary-foreground)",
                   }}
                   initial={{ x: index % 2 === 0 ? 50 : -50 }}
                   animate={{ x: 0 }}
@@ -82,16 +81,16 @@ export default function Timeline() {
                     }
                   }}
                 >
-                  <h3 className="text-xl font-bold group-hover:text-primary-foreground transition-colors">
+                  <h3 className="text-xl font-bold text-primary transition-colors">
                     {event.title}
                   </h3>
-                  <h4 className="text-lg group-hover:text-primary-foreground/90 font-semibold mt-1">
+                  <h4 className="text-lg text-foreground font-semibold mt-1">
                     {event.subtitle}
                   </h4>
-                  <p className="group-hover:text-primary-foreground/80 mt-2 transition-colors">
+                  <p className="text-muted-foreground mt-2 transition-colors">
                     {event.description}
                   </p>
-                  <p className="text-sm font-semibold mt-2 group-hover:text-primary-foreground/70 transition-colors">
+                  <p className="text-sm font-semibold mt-2 text-primary/80">
                     {event.year}
                   </p>
                 </motion.div>
