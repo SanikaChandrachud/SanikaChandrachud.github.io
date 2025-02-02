@@ -18,8 +18,8 @@ export default function HomePage() {
           />
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1581093458791-9b9cdcd5d62c?auto=format&fit=crop&q=80"
-              alt="Industrial 3D Printing Technology"
+              src="/images/3d-printing-hero.jpg"
+              alt="Advanced Manufacturing and 3D Printing"
               className="w-full h-full object-cover object-center brightness-75"
             />
           </div>
