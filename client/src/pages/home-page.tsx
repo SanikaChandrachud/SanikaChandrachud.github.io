@@ -92,7 +92,7 @@ export default function HomePage() {
             <p className="text-muted-foreground">Specializing in mechanical design and advanced manufacturing</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Add expertise cards here based on resume content */}
+            {/* Add expertise cards based on resume content */}
             <ExpertiseCard
               icon={<Briefcase className="h-8 w-8" />}
               title="Mechanical Design"
