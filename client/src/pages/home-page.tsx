@@ -1,5 +1,6 @@
 import GearAnimation from "@/components/gear-animation";
 import Timeline from "@/components/timeline";
+import ModelViewer from "@/components/model-viewer";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -32,23 +33,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Summary Section */}
+      {/* Summary Section with 3D Model */}
       <section className="bg-background py-20">
         <div className="container">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="prose prose-lg mx-auto text-center"
-          >
-            <h2>Crafting Engineering Solutions</h2>
-            <p>
-              As a mechanical design engineer with expertise in both automotive and
-              robotics sectors, I bring a unique perspective to engineering
-              challenges. My work focuses on creating innovative solutions that
-              combine functionality with elegant design.
-            </p>
-          </motion.div>
+          <div className="grid gap-12 md:grid-cols-2 items-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="prose prose-lg"
+            >
+              <h2>Crafting Engineering Solutions</h2>
+              <p>
+                As a mechanical design engineer with expertise in both automotive and
+                robotics sectors, I bring a unique perspective to engineering
+                challenges. My work focuses on creating innovative solutions that
+                combine functionality with elegant design.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <ModelViewer className="shadow-xl" />
+            </motion.div>
+          </div>
         </div>
       </section>
 
