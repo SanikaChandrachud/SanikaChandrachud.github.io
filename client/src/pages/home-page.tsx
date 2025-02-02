@@ -1,6 +1,4 @@
-import GearAnimation from "@/components/gear-animation";
 import Timeline from "@/components/timeline";
-import ModelViewer from "@/components/model-viewer";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -15,21 +13,16 @@ export default function HomePage() {
           className="absolute inset-0"
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{ backgroundImage: 'url("/images/tech-pattern.svg")' }}
           />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0"
-          >
+          <div className="absolute inset-0">
             <img
-              src="/images/3d-printing.png"
-              alt="3D Printing Technology"
-              className="w-full h-full object-cover object-center"
+              src="https://images.unsplash.com/photo-1581093458791-9b9cdcd5d62c?auto=format&fit=crop&q=80"
+              alt="Industrial 3D Printing Technology"
+              className="w-full h-full object-cover object-center brightness-75"
             />
-          </motion.div>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-900/50 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         </motion.div>
@@ -59,12 +52,7 @@ export default function HomePage() {
               className="text-lg sm:text-xl text-blue-100/80"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.6,
-                type: "spring",
-                stiffness: 100 
-              }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
               Transforming innovative ideas into precision-engineered solutions
             </motion.p>
@@ -73,7 +61,7 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
-      {/* Summary Section with 3D Model */}
+      {/* Summary Section */}
       <section className="bg-background py-12 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -100,8 +88,14 @@ export default function HomePage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative rounded-lg overflow-hidden shadow-2xl"
             >
-              <ModelViewer className="shadow-xl rounded-lg" />
+              <img
+                src="/images/robotics.jpg"
+                alt="Advanced Robotics Technology"
+                className="w-full h-[400px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </motion.div>
           </div>
         </div>
@@ -110,7 +104,6 @@ export default function HomePage() {
       {/* Journey Section */}
       <section className="relative bg-muted/50 py-12 sm:py-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <GearAnimation />
         <motion.div 
           className="container mx-auto px-4 sm:px-6 lg:px-8 relative"
           initial={{ opacity: 0, y: 20 }}
