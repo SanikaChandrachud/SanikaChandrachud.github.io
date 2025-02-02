@@ -48,13 +48,7 @@ git add assets/
 # Commit changes
 git commit -m "Deploy to GitHub Pages"
 
-# Push to gh-pages branch
-git push origin main:gh-pages --force
+# Push to main branch since this is username.github.io
+git push origin main --force
 
-echo "Deployment complete! Your site should be live in a few minutes."
-echo "Make sure to:"
-echo "1. Go to your repository settings"
-echo "2. Navigate to Pages section"
-echo "3. Ensure source is set to 'Deploy from a branch'"
-echo "4. Select 'gh-pages' branch and '/ (root)' folder"
-echo "5. Click Save"
+echo "Deployment complete! Your site should be live in a few minutes at https://sanikachandrachud.github.io"
