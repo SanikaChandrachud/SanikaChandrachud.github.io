@@ -15,11 +15,12 @@ export default function HomePage() {
           className="absolute inset-0"
         >
           <img
-            src="/engineering-hero.jpg"
-            alt="3D Printing Technology"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            src="/3d-printing-future.jpg"
+            alt="Advanced 3D Printing Technology"
+            className="absolute inset-0 h-full w-full object-cover object-center brightness-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
@@ -58,6 +59,7 @@ export default function HomePage() {
             </motion.p>
           </motion.div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Summary Section with 3D Model */}
