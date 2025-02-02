@@ -8,11 +8,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9"
-          alt="Engineering Facility"
+          src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
+          alt="3D Printing Technology"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gray-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/60" />
         <div className="container relative flex h-full items-center justify-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
