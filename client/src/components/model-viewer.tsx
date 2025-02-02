@@ -20,7 +20,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0xf5f5f5); // Light background
+    scene.background = new THREE.Color(0xf5f5f5);
     scene.fog = new THREE.Fog(0xf5f5f5, 15, 50);
 
     // Camera setup
@@ -34,7 +34,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     camera.position.z = 15;
     camera.position.y = 5;
 
-    // Renderer setup with improved shadows
+    // Enhanced renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
       alpha: true,
@@ -57,7 +57,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     controls.minDistance = 5;
     controls.maxDistance = 30;
 
-    // Enhanced lighting setup for metallic materials
+    // Enhanced lighting setup
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
@@ -66,59 +66,46 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.width = 2048;
     directionalLight.shadow.mapSize.height = 2048;
-    directionalLight.shadow.camera.near = 0.5;
-    directionalLight.shadow.camera.far = 500;
     scene.add(directionalLight);
 
-    // Add point lights for metallic highlights
-    const pointLight1 = new THREE.PointLight(0x4477ff, 1.0);
-    pointLight1.position.set(0, 10, 0);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0xff7744, 1.0);
-    pointLight2.position.set(10, 0, 0);
-    scene.add(pointLight2);
-
-    // Create improved gears with involute tooth profile
+    // Create improved gears
     function createGear(radius: number, teeth: number, height: number) {
       const shape = new THREE.Shape();
       const toothSize = (Math.PI * 2 * radius) / (teeth * 4);
       const innerRadius = radius * 0.7;
-      const pressureAngle = Math.PI / 9; // 20 degrees pressure angle
-      const numPoints = 20; // Points per tooth for smooth curve
-
-      // Helper function to create involute curve point
-      function involutePoint(radius: number, angle: number) {
-        const inv = angle * Math.tan(pressureAngle) - angle;
-        const x = radius * (Math.cos(angle) + inv * Math.sin(angle));
-        const y = radius * (Math.sin(angle) - inv * Math.cos(angle));
-        return { x, y };
-      }
-
-      // Create base circle
-      shape.moveTo(radius, 0);
 
       for (let i = 0; i < teeth; i++) {
-        const angleStep = (Math.PI * 2) / teeth;
-        const startAngle = i * angleStep;
+        const angle = (i * Math.PI * 2) / teeth;
+        const nextAngle = ((i + 1) * Math.PI * 2) / teeth;
 
-        // Create involute profile for each tooth
-        for (let j = 0; j < numPoints; j++) {
-          const t = j / (numPoints - 1);
-          const angle = startAngle + angleStep * t;
-          const point = involutePoint(radius, angle);
-
-          if (j === 0) {
-            shape.lineTo(point.x, point.y);
-          } else {
-            shape.bezierCurveTo(
-              point.x, point.y,
-              point.x, point.y,
-              point.x + toothSize * Math.cos(angle + Math.PI/2),
-              point.y + toothSize * Math.sin(angle + Math.PI/2)
-            );
-          }
+        if (i === 0) {
+          shape.moveTo(
+            Math.cos(angle) * radius,
+            Math.sin(angle) * radius
+          );
         }
+
+        // Create tooth profile with curved edges
+        shape.absarc(
+          0, 0, radius,
+          angle,
+          angle + Math.PI/teeth/4,
+          false
+        );
+        shape.absarc(
+          Math.cos(angle + Math.PI/teeth/2) * (radius + toothSize),
+          Math.sin(angle + Math.PI/teeth/2) * (radius + toothSize),
+          toothSize/2,
+          angle - Math.PI/2,
+          angle + Math.PI/2,
+          true
+        );
+        shape.absarc(
+          0, 0, radius,
+          angle + Math.PI/teeth*3/4,
+          nextAngle,
+          false
+        );
       }
 
       // Add inner circle
@@ -127,17 +114,17 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       shape.holes.push(hole);
 
       const extrudeSettings = {
-        steps: 4,
+        steps: 2,
         depth: height,
         bevelEnabled: true,
         bevelThickness: 0.2,
         bevelSize: 0.1,
-        bevelSegments: 8
+        bevelSegments: 5
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
 
-      // Create realistic metallic material
+      // Enhanced metallic material
       const material = new THREE.MeshStandardMaterial({
         color: 0x95A5A6,
         metalness: 0.9,
@@ -153,7 +140,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       return mesh;
     }
 
-    // Create environment map for realistic reflections
+    // Create environment map
     const envMap = new THREE.CubeTextureLoader().load([
       'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/px.jpg',
       'https://threejs.org/examples/textures/cube/SwedishRoyalCastle/nx.jpg',
@@ -164,10 +151,10 @@ export default function ModelViewer({ className }: ModelViewerProps) {
     ]);
     scene.environment = envMap;
 
-    // Add multiple gears with different sizes
-    const mainGear = createGear(3, 32, 0.5);
-    const secondaryGear = createGear(2, 24, 0.5);
-    const tertiaryGear = createGear(2, 24, 0.5);
+    // Add multiple gears
+    const mainGear = createGear(3, 24, 0.5);
+    const secondaryGear = createGear(2, 20, 0.5);
+    const tertiaryGear = createGear(2, 20, 0.5);
 
     // Position gears
     secondaryGear.position.set(5.2, 0, 0);
@@ -184,7 +171,7 @@ export default function ModelViewer({ className }: ModelViewerProps) {
       requestAnimationFrame(animate);
       controls.update();
 
-      // Rotate gears with smooth motion
+      // Rotate gears smoothly
       mainGear.rotation.z += 0.003;
       secondaryGear.rotation.z -= 0.0045;
       tertiaryGear.rotation.z -= 0.0045;
