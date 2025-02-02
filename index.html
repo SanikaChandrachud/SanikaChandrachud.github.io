@@ -1,94 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <style data-vite-theme="" data-inject-first="">:root {
+      --background: 0 0% 100%;
+--foreground: 20 14.3% 4.1%;
+--muted: 60 4.8% 95.9%;
+--muted-foreground: 25 5.3% 44.7%;
+--popover: 0 0% 100%;
+--popover-foreground: 20 14.3% 4.1%;
+--card: 0 0% 100%;
+--card-foreground: 20 14.3% 4.1%;
+--border: 20 5.9% 90%;
+--input: 20 5.9% 90%;
+--primary: 215 50% 23%;
+--primary-foreground: 215 18% 97%;
+--secondary: 60 4.8% 95.9%;
+--secondary-foreground: 24 9.8% 10%;
+--accent: 60 4.8% 95.9%;
+--accent-foreground: 24 9.8% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 60 9.1% 97.8%;
+--ring: 20 14.3% 4.1%;
+--radius: 0.5rem;
+  }
+  .dark {
+      --background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--primary: 215 50% 23%;
+--primary-foreground: 215 18% 97%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--ring: 240 4.9% 83.9%;
+--radius: 0.5rem;
+  }</style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Engineering Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">Engineering Portfolio</div>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="about.html">About</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9" alt="Engineering Facility" class="hero-image">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-text animate-fade-in">
-                <h1>Mechanical Design Engineering Excellence</h1>
-                <p>Transforming innovative ideas into precision-engineered solutions</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Summary Section -->
-    <section class="summary">
-        <div class="container">
-            <div class="prose animate-fade-in">
-                <h2>Crafting Engineering Solutions</h2>
-                <p>
-                    As a mechanical design engineer with expertise in both automotive and
-                    robotics sectors, I bring a unique perspective to engineering
-                    challenges. My work focuses on creating innovative solutions that
-                    combine functionality with elegant design.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journey Section -->
-    <section class="journey">
-        <div id="gear-animation"></div>
-        <div class="container">
-            <h2>Professional Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item animate-slide-in">
-                    <div class="timeline-icon graduation"></div>
-                    <div class="timeline-content">
-                        <h3>Bachelor's in Mechanical Engineering</h3>
-                        <p>Graduated with honors</p>
-                        <p class="year">2018</p>
-                    </div>
-                </div>
-                <div class="timeline-item animate-slide-in">
-                    <div class="timeline-icon briefcase"></div>
-                    <div class="timeline-content">
-                        <h3>Design Engineer</h3>
-                        <p>Worked on automotive projects</p>
-                        <p class="year">2018-2020</p>
-                    </div>
-                </div>
-                <div class="timeline-item animate-slide-in">
-                    <div class="timeline-icon graduation"></div>
-                    <div class="timeline-content">
-                        <h3>Master's in Mechanical Engineering</h3>
-                        <p>Specialized in robotics</p>
-                        <p class="year">2020-2022</p>
-                    </div>
-                </div>
-                <div class="timeline-item animate-slide-in">
-                    <div class="timeline-icon briefcase"></div>
-                    <div class="timeline-content">
-                        <h3>Senior Design Engineer</h3>
-                        <p>Leading innovation projects</p>
-                        <p class="year">2022-Present</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.159.0/three.min.js"></script>
-    <script src="script.js"></script>
-</body>
+    <meta name="description" content="Professional engineering portfolio showcasing mechanical design and innovation projects" />
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="module" crossorigin src="/assets/index-CLqmF08-.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C4ytp_z1.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
