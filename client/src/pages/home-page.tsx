@@ -24,9 +24,9 @@ export default function HomePage() {
           />
           <div className="absolute inset-0">
             <img
-              src="/images/HR-3625.JPG"
+              src="/images/hero-image.jpg"
               alt="Advanced Engineering and Innovation"
-              className="w-full h-full object-cover object-center brightness-75"
+              className="w-full h-full object-cover object-center brightness-90"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-900/50 to-transparent" />
