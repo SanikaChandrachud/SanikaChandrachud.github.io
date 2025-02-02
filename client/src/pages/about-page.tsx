@@ -61,7 +61,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, x: 0 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1581091870598-36ce9bad5c77"
+                src="/images/engineer-profile.jpg"
                 alt="Woman Engineer"
                 className="rounded-lg object-cover shadow-lg"
               />
