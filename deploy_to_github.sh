@@ -3,15 +3,19 @@
 # Build the project
 npm run build
 
-# Since this is a username.github.io site, we don't need a separate branch
-# Copy build files directly to root
+# Create necessary directories
+mkdir -p dist/public/assets
+
+# Copy all build files to the root directory since this is a GitHub Pages site
 cp -r dist/public/* .
 
 # Add .nojekyll file to bypass Jekyll processing
 touch .nojekyll
 
 # Stage all files
-git add .
+git add .nojekyll
+git add index.html
+git add assets/
 
 # Commit changes
 git commit -m "Deploy to GitHub Pages"
