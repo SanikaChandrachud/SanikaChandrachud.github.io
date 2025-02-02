@@ -57,32 +57,6 @@ export default function HomePage() {
           <Timeline />
         </div>
       </section>
-
-      {/* Featured Work Section */}
-      <section className="bg-background py-20">
-        <div className="container">
-          <h2 className="mb-12 text-center text-3xl font-bold">Featured Work</h2>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-lg bg-card p-6 shadow-lg"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5"
-                alt="Engineering workspace"
-                className="mb-4 aspect-video rounded-lg object-cover"
-              />
-              <h3 className="mb-2 text-xl font-bold">Precision Design</h3>
-              <p className="text-muted-foreground">
-                Creating innovative solutions through detailed engineering analysis
-              </p>
-            </motion.div>
-            {/* Add more featured work items similarly */}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
