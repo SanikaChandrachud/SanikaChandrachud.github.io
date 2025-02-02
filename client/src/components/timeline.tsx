@@ -30,28 +30,25 @@ const timelineEvents = [
 
 export default function Timeline() {
   return (
-    <div className="relative">
-      <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 bg-muted" />
+    <div className="relative ml-8">
+      <div className="absolute left-0 h-full w-0.5 bg-muted" />
       <div className="space-y-12">
         {timelineEvents.map((event, index) => (
           <motion.div
             key={index}
-            className={`flex items-center gap-8 ${
-              index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-            }`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.2 }}
           >
-            <div className="flex-1 text-right">
+            <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary">
+              <event.icon className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <div className="flex-1">
               <h3 className="font-bold">{event.title}</h3>
               <p className="text-muted-foreground">{event.description}</p>
               <p className="text-sm text-primary">{event.year}</p>
             </div>
-            <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary">
-              <event.icon className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <div className="flex-1" />
           </motion.div>
         ))}
       </div>

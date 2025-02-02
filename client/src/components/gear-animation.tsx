@@ -15,23 +15,35 @@ export default function GearAnimation() {
       1000
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    
+
     renderer.setSize(
       containerRef.current.clientWidth,
       containerRef.current.clientHeight
     );
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create gear geometry
-    const gearGeometry = new THREE.CylinderGeometry(2, 2, 0.5, 32);
-    const gearMaterial = new THREE.MeshPhongMaterial({
-      color: 0x404040,
-      specular: 0x808080,
-      shininess: 100,
+    // Create multiple gears with different sizes and positions
+    const gears: THREE.Mesh[] = [];
+    const gearPositions = [
+      { x: -3, y: 2, z: 0, size: 1.5, speed: 0.01 },
+      { x: 0, y: -2, z: 0, size: 2, speed: -0.015 },
+      { x: 3, y: 1, z: 0, size: 1.2, speed: 0.02 },
+    ];
+
+    gearPositions.forEach(({ x, y, z, size, speed }) => {
+      const gearGeometry = new THREE.CylinderGeometry(size, size, 0.5, 32, 1, false);
+      const gearMaterial = new THREE.MeshPhongMaterial({
+        color: 0x404040,
+        specular: 0x808080,
+        shininess: 100,
+      });
+
+      const gear = new THREE.Mesh(gearGeometry, gearMaterial);
+      gear.position.set(x, y, z);
+      gear.userData.speed = speed;
+      scene.add(gear);
+      gears.push(gear);
     });
-    
-    const gear = new THREE.Mesh(gearGeometry, gearMaterial);
-    scene.add(gear);
 
     // Add lighting
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -39,13 +51,14 @@ export default function GearAnimation() {
     scene.add(light);
     scene.add(new THREE.AmbientLight(0x404040));
 
-    camera.position.z = 5;
+    camera.position.z = 8;
 
     // Animation loop
     function animate() {
       requestAnimationFrame(animate);
-      gear.rotation.x += 0.01;
-      gear.rotation.y += 0.01;
+      gears.forEach((gear) => {
+        gear.rotation.z += gear.userData.speed;
+      });
       renderer.render(scene, camera);
     }
 
@@ -61,7 +74,7 @@ export default function GearAnimation() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 -z-10 opacity-20"
+      className="absolute inset-0 -z-10 opacity-30"
     />
   );
 }
