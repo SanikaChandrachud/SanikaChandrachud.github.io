@@ -22,7 +22,7 @@ export default function HomePage() {
             className="max-w-3xl mx-auto"
           >
             <motion.h1 
-              className="mb-6 text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 tracking-tight"
+              className="mb-6 text-4xl sm:text-5xl font-bold text-white tracking-tight"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -37,14 +37,6 @@ export default function HomePage() {
             >
               Design • Prototype • Innovate
             </motion.h2>
-            <motion.p
-              className="text-xl text-blue-200/90 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              Creating innovative solutions through advanced engineering and design excellence
-            </motion.p>
           </motion.div>
         </div>
       </section>
