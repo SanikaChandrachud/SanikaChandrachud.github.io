@@ -26,7 +26,7 @@ export default function NavBar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-lg font-bold">Sanika Chandrachud Portfolio</span>
+            <span className="text-lg font-bold">Sanika's Engineering Design Portfolio</span>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -44,7 +44,7 @@ export default function NavBar() {
               href="/about"
               className={`text-sm sm:text-base ${location === "/about" ? "font-bold" : ""}`}
             >
-              About
+              About Me
             </Link>
             {user && showAdmin && (
               <Link href="/admin">

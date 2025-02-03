@@ -1,15 +1,12 @@
 import Timeline from "@/components/timeline";
 import { motion } from "framer-motion";
-import ParallaxBackground from "@/components/parallax-background";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, GraduationCap, Wrench, Cpu, Code } from "lucide-react";
+import { ArrowRight, Cpu, Wrench, Bot } from "lucide-react";
 import { Link } from "wouter";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/95">
-      <ParallaxBackground />
-
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <motion.div
@@ -22,14 +19,7 @@ export default function HomePage() {
             className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{ backgroundImage: 'url("/images/tech-pattern.svg")' }}
           />
-          <div className="absolute inset-0">
-            <img
-              src="/images/hero-image.jpg"
-              alt="Product Engineering Excellence"
-              className="w-full h-full object-cover object-center brightness-90"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-gray-900/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-slate-900/50 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
@@ -44,7 +34,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              Product Engineering Excellence
+              Mechanical Design Engineer
             </motion.h1>
             <motion.h2 
               className="mb-4 text-3xl sm:text-4xl font-semibold text-white/90"
@@ -54,28 +44,9 @@ export default function HomePage() {
             >
               Design • Prototype • Innovate
             </motion.h2>
-            <motion.p 
-              className="text-lg sm:text-xl text-blue-100/80 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              Professional Product Engineer specializing in advanced manufacturing and design thinking
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <Link href="/projects">
-                <Button className="bg-blue-500 hover:bg-blue-600">
-                  View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
       </section>
 
       {/* Expertise Section */}
@@ -88,31 +59,43 @@ export default function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">Areas of Expertise</h2>
-            <p className="text-muted-foreground">Certified professional with diverse technical skills</p>
+            <h2 className="text-3xl font-bold mb-4 text-blue-300">Areas of Expertise</h2>
+            <p className="text-blue-100/80">Specialized in advanced engineering solutions</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <ExpertiseCard
               icon={<Wrench className="h-8 w-8" />}
-              title="Advanced Manufacturing"
-              description="Expert in 3D printing, laser cutting, sheet metal fabrication, and operating industrial equipment"
+              title="Product Design"
+              description="Expert in mechanical design, CAD modeling, and design optimization"
             />
             <ExpertiseCard
               icon={<Cpu className="h-8 w-8" />}
-              title="Robotics & Automation"
-              description="Certified in Kuka Robot Programming 2, experienced with cobots including UR10e, TM12, TM14"
+              title="Advanced Manufacturing"
+              description="Specialized in 3D printing, prototyping, and design for manufacturing"
             />
             <ExpertiseCard
-              icon={<Code className="h-8 w-8" />}
-              title="Design & Development"
-              description="Certified SolidWorks Professional with expertise in CAD, simulation, and DFX principles"
+              icon={<Bot className="h-8 w-8" />}
+              title="Robotics and Automation"
+              description="Experience with industrial robotics and automation solutions"
             />
           </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <Link href="/projects">
+              <Button className="bg-blue-500 hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 text-lg px-8 py-6">
+                View Projects <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section className="py-20 bg-muted/30 relative">
+      {/* Timeline Section */}
+      <section className="py-20 bg-slate-900/50 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -121,8 +104,8 @@ export default function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold mb-4">Education & Experience</h2>
-            <p className="text-muted-foreground">A journey of academic excellence and professional growth</p>
+            <h2 className="text-3xl font-bold mb-4 text-blue-300">Professional Journey</h2>
+            <p className="text-blue-100/80">A timeline of achievements and growth</p>
           </motion.div>
           <Timeline />
         </div>
@@ -138,11 +121,11 @@ function ExpertiseCard({ icon, title, description }: { icon: React.ReactNode, ti
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="p-6 rounded-lg bg-card border shadow-lg hover:shadow-xl transition-shadow"
+      className="p-6 rounded-lg bg-slate-800/50 border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
     >
-      <div className="mb-4 text-primary">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+      <div className="mb-4 text-blue-400">{icon}</div>
+      <h3 className="text-xl font-semibold mb-2 text-blue-200">{title}</h3>
+      <p className="text-blue-100/70">{description}</p>
     </motion.div>
   );
 }
