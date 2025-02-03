@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu, Wrench, Bot } from "lucide-react";
 import { Link } from "wouter";
+import AdaptiveHeroImage from "@/components/adaptive-hero-image";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
       <section className="relative h-[80vh] overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: 'url("/images/manufacturing-bg.png")'
-          }}
+        <AdaptiveHeroImage
+          src="/images/hero-image.jpg"
+          alt="Hero Image"
+          className="h-full"
         />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
