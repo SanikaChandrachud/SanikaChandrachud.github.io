@@ -18,12 +18,9 @@ export default function HomePage() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-              backgroundImage: 'url("/images/manufacturing-bg.png")',
-              opacity: 0.5
+              backgroundImage: 'url("/images/manufacturing-bg.png")'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-slate-900/50 to-slate-900/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
