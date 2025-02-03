@@ -51,9 +51,10 @@ const ParallaxBackground = () => {
     <div 
       ref={ref} 
       className="fixed inset-0 -z-10 overflow-hidden" 
+      style={{ position: 'fixed' }}
     >
-      {/* Background color overlay */}
-      <div className="absolute inset-0 bg-slate-900/95" />
+      {/* Dark background base */}
+      <div className="absolute inset-0 bg-slate-900" />
 
       {/* Parallax layers */}
       {parallaxElements.map((element, index) => (
