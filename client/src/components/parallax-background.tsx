@@ -22,9 +22,9 @@ const ParallaxBackground = () => {
 
   // Define parallax layers with different depths and positions
   const layers = useMemo(() => [
-    { depth: 1, opacity: 0.8, scale: 1.1 },
-    { depth: 0.8, opacity: 0.7, scale: 1.2 },
-    { depth: 0.6, opacity: 0.6, scale: 1.3 },
+    { depth: 1, opacity: 1, scale: 1.1 },
+    { depth: 0.8, opacity: 0.95, scale: 1.2 },
+    { depth: 0.6, opacity: 0.9, scale: 1.3 },
   ], []);
 
   const parallaxElements = layers.map((layer) => ({
@@ -33,7 +33,7 @@ const ParallaxBackground = () => {
   }));
 
   return (
-    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden bg-[#1a1a1a]">
+    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
       {parallaxElements.map((element, index) => (
         <motion.div
           key={index}
@@ -48,14 +48,11 @@ const ParallaxBackground = () => {
             style={{
               backgroundImage: 'url("/images/tech-manufacturing.png")',
               opacity: element.opacity,
-              filter: 'brightness(0.9) contrast(1.1)'
+              filter: 'brightness(0.7) contrast(1.2)'
             }}
           />
         </motion.div>
       ))}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/40 via-[#1a1a1a]/30 to-[#1a1a1a]/50"
-      />
     </div>
   );
 };
