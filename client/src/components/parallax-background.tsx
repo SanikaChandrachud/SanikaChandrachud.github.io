@@ -17,29 +17,14 @@ const ParallaxBackground = () => {
 
   // Create different movement speeds for each layer
   const createParallaxValue = useCallback((depth: number) => {
-    return useTransform(smoothProgress, [0, 1], ["0%", `${depth * 20}%`]);
+    return useTransform(smoothProgress, [0, 1], ["0%", `${depth * 15}%`]);
   }, [smoothProgress]);
 
-  // Background images with manufacturing/tech theme
-  const bgImages = [
-    'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1581093806997-124204d6fa9d?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=2000&q=80'
-  ];
-
-  // Preload images
-  useEffect(() => {
-    bgImages.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  // Define parallax layers with different depths and positions
+  // Define parallax layers with different depths and patterns
   const layers = useMemo(() => [
-    { depth: 0.1, opacity: 0.4, image: bgImages[0] },
-    { depth: 0.2, opacity: 0.3, image: bgImages[1] },
-    { depth: 0.3, opacity: 0.2, image: bgImages[2] }
+    { depth: 0.1, opacity: 0.15, color: "from-blue-600/30 to-purple-600/30" },
+    { depth: 0.2, opacity: 0.1, color: "from-cyan-500/20 to-blue-500/20" },
+    { depth: 0.3, opacity: 0.05, color: "from-indigo-500/10 to-blue-600/10" }
   ], []);
 
   const parallaxElements = layers.map((layer) => ({
@@ -50,37 +35,48 @@ const ParallaxBackground = () => {
   return (
     <div 
       ref={ref} 
-      className="fixed inset-0 -z-10 overflow-hidden" 
-      style={{ position: 'fixed' }}
+      className="fixed inset-0 -z-10 overflow-hidden bg-slate-900"
     >
-      {/* Dark background base */}
-      <div className="absolute inset-0 bg-slate-900" />
+      {/* Base tech pattern */}
+      <div className="absolute inset-0 opacity-[0.02]" 
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '24px 24px'
+        }}
+      />
 
-      {/* Parallax layers */}
+      {/* Parallax gradient layers */}
       {parallaxElements.map((element, index) => (
         <motion.div
           key={index}
           style={{
             y: element.y,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `url(${element.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
             opacity: element.opacity,
-            willChange: 'transform',
           }}
-          className="transition-opacity duration-300"
-        />
+          className={`absolute inset-0 bg-gradient-to-br ${element.color}`}
+        >
+          <div className="absolute inset-0" 
+            style={{
+              backgroundImage: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 25%, transparent 50%)',
+              backgroundSize: '200% 100%',
+              animation: 'shine 8s infinite linear'
+            }}
+          />
+        </motion.div>
       ))}
 
-      {/* Gradient overlay for better text contrast */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/30 to-slate-900/60"
+      {/* Additional tech pattern overlay */}
+      <div className="absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%), 
+                           linear-gradient(-45deg, rgba(255,255,255,0.02) 25%, transparent 25%)`,
+          backgroundSize: '4px 4px',
+          opacity: 0.1
+        }}
       />
+
+      {/* Final gradient overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-transparent to-slate-900/50" />
     </div>
   );
 };
