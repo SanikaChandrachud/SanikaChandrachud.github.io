@@ -3,18 +3,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu, Wrench, Bot } from "lucide-react";
 import { Link } from "wouter";
-import AdaptiveHeroImage from "@/components/adaptive-hero-image";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
-      <section className="relative h-[80vh] overflow-hidden">
-        <AdaptiveHeroImage
-          src="/images/hero-image.jpg"
-          alt="Hero Image"
-          className="h-full"
-        />
+      <section className="relative h-[80vh] overflow-hidden bg-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex h-full items-center justify-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +16,7 @@ export default function HomePage() {
             className="max-w-3xl mx-auto"
           >
             <motion.h1 
-              className="mb-6 text-4xl sm:text-5xl font-bold text-white tracking-tight"
+              className="mb-6 text-6xl sm:text-7xl font-bold text-white tracking-tight"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -30,7 +24,7 @@ export default function HomePage() {
               Mechanical Design Engineer
             </motion.h1>
             <motion.h2 
-              className="mb-4 text-3xl sm:text-4xl font-semibold text-white/90"
+              className="mb-4 text-3xl sm:text-4xl font-semibold text-blue-300/90"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
