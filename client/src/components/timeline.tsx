@@ -34,11 +34,11 @@ const timelineEvents = [
 
 export default function Timeline() {
   return (
-    <div className="container mx-auto max-w-5xl px-4 py-12">
+    <div className="container mx-auto max-w-7xl px-4 py-12">
       <div className="relative">
         {/* Road path background */}
         <motion.div 
-          className="absolute left-1/2 transform -translate-x-1/2 w-16 h-full"
+          className="absolute left-1/2 transform -translate-x-1/2 w-20 h-full"
           style={{
             background: "linear-gradient(to bottom, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1))",
             borderRadius: "8px",
@@ -77,9 +77,9 @@ export default function Timeline() {
               transition={{ delay: index * 0.3 }}
             >
               {/* Content */}
-              <div className={`flex-1 ${index % 2 === 0 ? "text-right" : "text-left"}`}>
+              <div className={`flex-1 max-w-xl ${index % 2 === 0 ? "text-right ml-auto" : "mr-auto"}`}>
                 <motion.div
-                  className="group bg-slate-800/50 p-6 rounded-lg border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
+                  className="group bg-slate-800/50 p-8 rounded-lg border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
                   whileHover={{ 
                     scale: 1.02,
                     backgroundColor: "rgba(30, 41, 59, 0.7)"
@@ -119,12 +119,12 @@ export default function Timeline() {
                 whileHover={{ scale: 1.1 }}
               >
                 <motion.div
-                  className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
+                  className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
                   whileHover={{ 
                     boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
                   }}
                 >
-                  <event.icon className="h-7 w-7 text-white" />
+                  <event.icon className="h-8 w-8 text-white" />
                 </motion.div>
                 {/* Pulse effect */}
                 <motion.div
