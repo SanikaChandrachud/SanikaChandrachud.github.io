@@ -34,34 +34,38 @@ const timelineEvents = [
 
 export default function Timeline() {
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12">
+    <div className="container mx-auto max-w-5xl px-4 py-12">
       <div className="relative">
-        {/* Curved road path with animated gradient */}
+        {/* Road path background */}
         <motion.div 
-          className="absolute left-1/2 transform -translate-x-1/2 w-4 h-full"
+          className="absolute left-1/2 transform -translate-x-1/2 w-16 h-full"
           style={{
-            background: "linear-gradient(to bottom, rgba(59, 130, 246, 0.5), rgba(59, 130, 246, 0.2))",
-            borderRadius: "4px",
-            boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)"
+            background: "linear-gradient(to bottom, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1))",
+            borderRadius: "8px",
+            boxShadow: "0 0 30px rgba(59, 130, 246, 0.2)"
           }}
           initial={{ height: 0 }}
           animate={{ height: "100%" }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          {/* Road markings */}
+          {/* Road markings animation */}
           <div className="absolute inset-0 overflow-hidden">
             <div 
               className="w-full h-full"
               style={{
-                backgroundImage: "linear-gradient(to bottom, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%)",
-                backgroundSize: "100% 20px",
+                backgroundImage: "linear-gradient(to bottom, transparent 47%, rgba(255,255,255,0.15) 50%, transparent 53%)",
+                backgroundSize: "100% 24px",
                 animation: "moveRoadMarkings 2s linear infinite"
               }}
             />
           </div>
+
+          {/* Side highlights */}
+          <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-blue-400/30 via-blue-400/10 to-blue-400/30" />
+          <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-blue-400/30 via-blue-400/10 to-blue-400/30" />
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-24">
           {timelineEvents.map((event, index) => (
             <motion.div
               key={index}
@@ -115,12 +119,12 @@ export default function Timeline() {
                 whileHover={{ scale: 1.1 }}
               >
                 <motion.div
-                  className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
+                  className="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
                   whileHover={{ 
                     boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
                   }}
                 >
-                  <event.icon className="h-6 w-6 text-white" />
+                  <event.icon className="h-7 w-7 text-white" />
                 </motion.div>
                 {/* Pulse effect */}
                 <motion.div
@@ -144,7 +148,7 @@ export default function Timeline() {
       <style>{`
         @keyframes moveRoadMarkings {
           from { background-position: 0 0; }
-          to { background-position: 0 20px; }
+          to { background-position: 0 24px; }
         }
       `}</style>
     </div>

@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative h-[80vh] overflow-hidden">
         <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -16,11 +16,14 @@ export default function HomePage() {
           className="absolute inset-0"
         >
           <div 
-            className="absolute inset-0 bg-cover bg-center opacity-20"
-            style={{ backgroundImage: 'url("/images/tech-pattern.svg")' }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: 'url("/images/manufacturing-bg.png")',
+              opacity: 0.3 
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-slate-900/50 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-slate-900/70 to-slate-900/90" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
@@ -44,6 +47,14 @@ export default function HomePage() {
             >
               Design • Prototype • Innovate
             </motion.h2>
+            <motion.p
+              className="text-xl text-blue-200/80 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              Creating innovative solutions through advanced engineering and design excellence
+            </motion.p>
           </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
@@ -62,7 +73,7 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold mb-4 text-blue-300">Areas of Expertise</h2>
             <p className="text-blue-100/80">Specialized in advanced engineering solutions</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <ExpertiseCard
               icon={<Wrench className="h-8 w-8" />}
               title="Product Design"
@@ -96,7 +107,14 @@ export default function HomePage() {
 
       {/* Timeline Section */}
       <section className="py-20 bg-slate-900/50 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent"
+          style={{
+            backgroundImage: 'url("/images/tech-pattern.svg")',
+            opacity: 0.05
+          }}
+        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
