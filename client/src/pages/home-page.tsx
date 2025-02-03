@@ -18,9 +18,11 @@ export default function HomePage() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-              backgroundImage: 'url("/images/manufacturing-bg.png")'
+              backgroundImage: 'url("/images/manufacturing-bg.png")',
+              opacity: 0.8
             }}
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/70 via-slate-900/60 to-slate-900/50" />
         </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex h-full items-center justify-center text-center">
           <motion.div
@@ -45,7 +47,7 @@ export default function HomePage() {
               Design • Prototype • Innovate
             </motion.h2>
             <motion.p
-              className="text-xl text-blue-200/80 max-w-2xl mx-auto"
+              className="text-xl text-blue-200/90 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
