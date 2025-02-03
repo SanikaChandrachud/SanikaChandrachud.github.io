@@ -22,9 +22,24 @@ const ParallaxBackground = () => {
 
   // Define parallax layers with different depths and positions
   const layers = useMemo(() => [
-    { depth: 1, opacity: 1, scale: 1.1 },
-    { depth: 0.8, opacity: 0.95, scale: 1.2 },
-    { depth: 0.6, opacity: 0.9, scale: 1.3 },
+    { 
+      depth: 1, 
+      opacity: 1, 
+      scale: 1.1,
+      image: 'https://images.unsplash.com/photo-1581093806997-124204d6fa9d?auto=format&fit=crop&w=2000&q=80'
+    },
+    { 
+      depth: 0.8, 
+      opacity: 0.95, 
+      scale: 1.2,
+      image: 'https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=2000&q=80'
+    },
+    { 
+      depth: 0.6, 
+      opacity: 0.9, 
+      scale: 1.3,
+      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=2000&q=80'
+    },
   ], []);
 
   const parallaxElements = layers.map((layer) => ({
@@ -33,7 +48,7 @@ const ParallaxBackground = () => {
   }));
 
   return (
-    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
+    <div ref={ref} className="fixed inset-0 -z-10 overflow-hidden">
       {parallaxElements.map((element, index) => (
         <motion.div
           key={index}
@@ -46,7 +61,7 @@ const ParallaxBackground = () => {
           <div 
             className="w-full h-full bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/images/tech-manufacturing.png")',
+              backgroundImage: `url(${element.image})`,
               opacity: element.opacity,
               filter: 'brightness(0.7) contrast(1.2)'
             }}
