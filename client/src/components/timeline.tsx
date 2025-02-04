@@ -44,7 +44,7 @@ export default function Timeline() {
     <div className="container mx-auto max-w-7xl px-4 py-12">
       <div className="relative">
         {/* Road path background */}
-        <motion.div 
+        <motion.div
           className="absolute left-1/2 transform -translate-x-1/2 w-20 h-full"
           style={{
             background: "linear-gradient(to bottom, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1))",
@@ -57,7 +57,7 @@ export default function Timeline() {
         >
           {/* Road markings animation */}
           <div className="absolute inset-0 overflow-hidden">
-            <div 
+            <div
               className="w-full h-full"
               style={{
                 backgroundImage: "linear-gradient(to bottom, transparent 47%, rgba(255,255,255,0.15) 50%, transparent 53%)",
@@ -87,13 +87,13 @@ export default function Timeline() {
               <div className={`flex-1 max-w-xl ${index % 2 === 0 ? "text-right ml-auto" : "mr-auto"}`}>
                 <motion.div
                   className="group bg-slate-800/50 p-6 rounded-lg border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
                     backgroundColor: "rgba(30, 41, 59, 0.7)"
                   }}
                   initial={{ x: index % 2 === 0 ? 50 : -50 }}
                   animate={{ x: 0 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.5,
                     scale: {
                       type: "spring",
@@ -127,7 +127,7 @@ export default function Timeline() {
               >
                 <motion.div
                   className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
-                  whileHover={{ 
+                  whileHover={{
                     boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
                   }}
                 >
@@ -138,7 +138,7 @@ export default function Timeline() {
                   className="absolute inset-0 rounded-full bg-blue-500"
                   initial={{ opacity: 0.3, scale: 1 }}
                   animate={{ opacity: 0, scale: 1.5 }}
-                  transition={{ 
+                  transition={{
                     repeat: Infinity,
                     duration: 2,
                     ease: "easeOut"
