@@ -65,11 +65,11 @@ export default function Timeline() {
           <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-blue-400/30 via-blue-400/10 to-blue-400/30" />
         </motion.div>
 
-        <div className="space-y-24">
+        <div className="space-y-12">
           {timelineEvents.map((event, index) => (
             <motion.div
               key={index}
-              className={`flex items-center gap-8 ${
+              className={`flex items-center gap-6 ${
                 index % 2 === 0 ? "flex-row-reverse" : ""
               }`}
               initial={{ opacity: 0, y: 50 }}
@@ -79,7 +79,7 @@ export default function Timeline() {
               {/* Content */}
               <div className={`flex-1 max-w-xl ${index % 2 === 0 ? "text-right ml-auto" : "mr-auto"}`}>
                 <motion.div
-                  className="group bg-slate-800/50 p-8 rounded-lg border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
+                  className="group bg-slate-800/50 p-6 rounded-lg border border-blue-500/20 shadow-lg hover:shadow-xl hover:border-blue-500/40 transition-all duration-300"
                   whileHover={{ 
                     scale: 1.02,
                     backgroundColor: "rgba(30, 41, 59, 0.7)"
@@ -119,12 +119,12 @@ export default function Timeline() {
                 whileHover={{ scale: 1.1 }}
               >
                 <motion.div
-                  className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
+                  className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
                   whileHover={{ 
                     boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
                   }}
                 >
-                  <event.icon className="h-8 w-8 text-white" />
+                  <event.icon className="h-6 w-6 text-white" />
                 </motion.div>
                 {/* Pulse effect */}
                 <motion.div
