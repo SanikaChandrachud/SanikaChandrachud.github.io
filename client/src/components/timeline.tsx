@@ -65,11 +65,11 @@ export default function Timeline() {
           <div className="absolute inset-y-0 right-0 w-1 bg-gradient-to-b from-blue-400/30 via-blue-400/10 to-blue-400/30" />
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="-space-y-16"> {/* Negative margin to create overlap */}
           {timelineEvents.map((event, index) => (
             <motion.div
               key={index}
-              className={`flex items-center gap-6 ${
+              className={`flex items-center gap-4 ${
                 index % 2 === 0 ? "flex-row-reverse" : ""
               }`}
               initial={{ opacity: 0, y: 50 }}
@@ -119,12 +119,12 @@ export default function Timeline() {
                 whileHover={{ scale: 1.1 }}
               >
                 <motion.div
-                  className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
+                  className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30"
                   whileHover={{ 
                     boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)",
                   }}
                 >
-                  <event.icon className="h-6 w-6 text-white" />
+                  <event.icon className="h-5 w-5 text-white" />
                 </motion.div>
                 {/* Pulse effect */}
                 <motion.div
