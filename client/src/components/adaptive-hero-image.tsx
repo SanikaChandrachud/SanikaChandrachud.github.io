@@ -47,8 +47,7 @@ export default function AdaptiveHeroImage({ src, alt, className = "" }: Props) {
 
       const avgBrightness = totalBrightness / (data.length / 4);
       // Adjust contrast value for better text visibility
-      // Higher minimum opacity (0.5) ensures text is always visible
-      const contrastValue = Math.max(0.5, Math.min(0.8, 1 - avgBrightness));
+      const contrastValue = Math.max(0.4, Math.min(0.7, 1 - avgBrightness));
       setContrast(contrastValue);
     };
   }, [src]);
@@ -59,12 +58,9 @@ export default function AdaptiveHeroImage({ src, alt, className = "" }: Props) {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${src})` }}
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: contrast }}
-        className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/85 to-slate-900/80 pointer-events-none"
-      />
+      >
+        {/* Remove the motion.div gradient overlay as we'll control it from the parent */}
+      </div>
     </div>
   );
 }

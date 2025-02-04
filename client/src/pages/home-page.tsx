@@ -10,34 +10,47 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
       <section className="relative h-[80vh] overflow-hidden">
+        {/* Hero Image */}
         <AdaptiveHeroImage
           src="/images/hero-image.jpg"
           alt="Hero Image"
-          className="absolute inset-0 w-full h-full object-cover" //Added object-cover for better image fitting.
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex h-full items-center justify-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto"
-          >
-            <motion.h1 
-              className="mb-6 text-6xl sm:text-7xl font-bold text-white tracking-tight"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+
+        {/* Gradient Overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/85 to-slate-900/80"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-3xl mx-auto text-center"
             >
-              Mechanical Design Engineer
-            </motion.h1>
-            <motion.h2 
-              className="mb-4 text-3xl sm:text-4xl font-semibold text-blue-300/90"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Design • Prototype • Innovate
-            </motion.h2>
-          </motion.div>
+              <motion.h1 
+                className="mb-6 text-6xl sm:text-7xl font-bold text-white tracking-tight"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                Mechanical Design Engineer
+              </motion.h1>
+              <motion.h2 
+                className="mb-4 text-3xl sm:text-4xl font-semibold text-blue-300/90"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                Design • Prototype • Innovate
+              </motion.h2>
+            </motion.div>
+          </div>
         </div>
       </section>
 
