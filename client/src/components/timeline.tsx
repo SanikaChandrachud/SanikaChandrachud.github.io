@@ -37,7 +37,7 @@ const timelineEvents = [
     description: "Graduated with first class distinction (8.5 GPA). National finalist in Aakruti 2019, presented at Solidworks World 2019 in Dallas.",
     icon: GraduationCap,
   }
-].reverse();
+];
 
 export default function Timeline() {
   return (
