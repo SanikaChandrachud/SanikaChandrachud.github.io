@@ -19,7 +19,7 @@ export default function HomePage() {
 
         {/* Gradient Overlay */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-900/85 to-slate-900/80"
+          className="absolute inset-0 bg-gradient-to-br from-slate-950/70 via-slate-900/60 to-slate-900/50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -34,7 +34,7 @@ export default function HomePage() {
               className="max-w-3xl mx-auto text-center"
             >
               <motion.h1 
-                className="mb-6 text-6xl sm:text-7xl font-bold text-white tracking-tight"
+                className="mb-6 text-6xl sm:text-7xl font-bold text-white tracking-tight text-shadow-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -42,7 +42,7 @@ export default function HomePage() {
                 Mechanical Design Engineer
               </motion.h1>
               <motion.h2 
-                className="mb-4 text-3xl sm:text-4xl font-semibold text-blue-300/90"
+                className="mb-4 text-3xl sm:text-4xl font-semibold text-blue-300/90 text-shadow-md"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
