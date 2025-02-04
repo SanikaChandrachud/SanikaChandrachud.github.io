@@ -53,15 +53,20 @@ export function setupAuth(app: Express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // Configure LocalStrategy to use email field instead of username
   passport.use(
     new LocalStrategy(
       { usernameField: 'email' },
       async (email, password, done) => {
-        const [user] = await getUserByEmail(email);
-        if (!user || !(await comparePasswords(password, user.password))) {
-          return done(null, false);
-        } else {
-          return done(null, user);
+        try {
+          const [user] = await getUserByEmail(email);
+          if (!user || !(await comparePasswords(password, user.password))) {
+            return done(null, false);
+          } else {
+            return done(null, user);
+          }
+        } catch (err) {
+          return done(err);
         }
       }
     ),
@@ -69,24 +74,32 @@ export function setupAuth(app: Express) {
 
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser(async (id: number, done) => {
-    const [user] = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, id))
-      .limit(1);
-
-    done(null, user);
+    try {
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, id))
+        .limit(1);
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
   });
 
   // Initialize admin account if it doesn't exist
   async function initializeAdmin() {
-    const [existingAdmin] = await getUserByEmail("sanika.chandrachud@outlook.com");
-    if (!existingAdmin) {
-      await db.insert(users).values({
-        email: "sanika.chandrachud@outlook.com",
-        password: await hashPassword("Abhijeet2024!"),
-        isAdmin: true
-      });
+    try {
+      const [existingAdmin] = await getUserByEmail("sanika.chandrachud@outlook.com");
+      if (!existingAdmin) {
+        await db.insert(users).values({
+          email: "sanika.chandrachud@outlook.com",
+          password: await hashPassword("Abhijeet2024!"),
+          isAdmin: true
+        });
+        console.log("Admin account created successfully");
+      }
+    } catch (error) {
+      console.error("Error initializing admin:", error);
     }
   }
 
@@ -98,8 +111,17 @@ export function setupAuth(app: Express) {
     res.json(req.user);
   });
 
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.status(200).json(req.user);
+  app.post("/api/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+        res.status(200).json(user);
+      });
+    })(req, res, next);
   });
 
   app.post("/api/logout", (req, res, next) => {
@@ -116,9 +138,9 @@ export function setupAuth(app: Express) {
       return res.status(400).send(error.toString());
     }
 
-    const [existingUser] = await getUserByEmail(result.data.email); // Changed to check email
+    const [existingUser] = await getUserByEmail(result.data.email);
     if (existingUser) {
-      return res.status(400).send("Email already exists"); // Changed message
+      return res.status(400).send("Email already exists");
     }
 
     const [user] = await db
