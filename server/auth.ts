@@ -32,8 +32,8 @@ async function comparePasswords(supplied: string, stored: string) {
   return timingSafeEqual(hashedBuf, suppliedBuf);
 }
 
-async function getUserByUsername(username: string) {
-  return db.select().from(users).where(eq(users.username, username)).limit(1);
+async function getUserByEmail(email: string) {
+  return db.select().from(users).where(eq(users.email, email)).limit(1);
 }
 
 export function setupAuth(app: Express) {
@@ -54,14 +54,17 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
-      const [user] = await getUserByUsername(username);
-      if (!user || !(await comparePasswords(password, user.password))) {
-        return done(null, false);
-      } else {
-        return done(null, user);
+    new LocalStrategy(
+      { usernameField: 'email' },
+      async (email, password, done) => {
+        const [user] = await getUserByEmail(email);
+        if (!user || !(await comparePasswords(password, user.password))) {
+          return done(null, false);
+        } else {
+          return done(null, user);
+        }
       }
-    }),
+    ),
   );
 
   passport.serializeUser((user, done) => done(null, user.id));
@@ -75,6 +78,37 @@ export function setupAuth(app: Express) {
     done(null, user);
   });
 
+  // Initialize admin account if it doesn't exist
+  async function initializeAdmin() {
+    const [existingAdmin] = await getUserByEmail("sanika.chandrachud@outlook.com");
+    if (!existingAdmin) {
+      await db.insert(users).values({
+        email: "sanika.chandrachud@outlook.com",
+        password: await hashPassword("Abhijeet2024!"),
+        isAdmin: true
+      });
+    }
+  }
+
+  // Call this when setting up the auth system
+  initializeAdmin().catch(console.error);
+
+  app.get("/api/user", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    res.json(req.user);
+  });
+
+  app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    res.status(200).json(req.user);
+  });
+
+  app.post("/api/logout", (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.sendStatus(200);
+    });
+  });
+
   app.post("/api/register", async (req, res, next) => {
     const result = insertUserSchema.safeParse(req.body);
     if (!result.success) {
@@ -82,9 +116,9 @@ export function setupAuth(app: Express) {
       return res.status(400).send(error.toString());
     }
 
-    const [existingUser] = await getUserByUsername(result.data.username);
+    const [existingUser] = await getUserByEmail(result.data.email); // Changed to check email
     if (existingUser) {
-      return res.status(400).send("Username already exists");
+      return res.status(400).send("Email already exists"); // Changed message
     }
 
     const [user] = await db
@@ -99,21 +133,5 @@ export function setupAuth(app: Express) {
       if (err) return next(err);
       res.status(201).json(user);
     });
-  });
-
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.status(200).json(req.user);
-  });
-
-  app.post("/api/logout", (req, res, next) => {
-    req.logout((err) => {
-      if (err) return next(err);
-      res.sendStatus(200);
-    });
-  });
-
-  app.get("/api/user", (req, res) => {
-    if (!req.isAuthenticated()) return res.sendStatus(401);
-    res.json(req.user);
   });
 }

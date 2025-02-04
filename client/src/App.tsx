@@ -21,8 +21,9 @@ function Router() {
         <Route path="/" component={HomePage} />
         <Route path="/projects" component={ProjectsPage} />
         <Route path="/about" component={AboutPage} />
-        <ProtectedRoute path="/admin" component={AdminPage} />
         <Route path="/auth" component={AuthPage} />
+        {/* Hidden admin route, only accessible by typing /admin */}
+        <ProtectedRoute path="/admin" component={AdminPage} />
         <Route component={NotFound} />
       </Switch>
     </>

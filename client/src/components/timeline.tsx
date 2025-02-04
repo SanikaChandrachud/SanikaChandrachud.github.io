@@ -119,7 +119,7 @@ export default function Timeline() {
 
               {/* Timeline node with pulse effect */}
               <motion.div
-                className="relative z-10"
+                className="relative z-10 flex items-center justify-center w-20"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: index * 0.3 + 0.2 }}
