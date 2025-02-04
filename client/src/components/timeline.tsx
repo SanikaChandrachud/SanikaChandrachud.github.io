@@ -10,6 +10,13 @@ const timelineEvents = [
     icon: Briefcase,
   },
   {
+    year: "Mar 2021 - Dec 2021",
+    title: "Design Engineer",
+    subtitle: "Dispotronics",
+    description: "Reverse Engineering of existing product range of 20+ products. Design and development of custom wheelchair projects.",
+    icon: Briefcase,
+  },
+  {
     year: "2020 - 2022",
     title: "Master of Engineering",
     subtitle: "Deakin University",
@@ -36,53 +43,26 @@ export default function Timeline() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-12">
       <div className="relative">
-        {/* Curved road path background using SVG */}
-        <motion.div className="absolute left-1/2 transform -translate-x-1/2 h-full w-20">
-          <svg
-            className="absolute inset-0 w-full h-full"
-            preserveAspectRatio="none"
-            viewBox="0 0 100 800"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <motion.path
-              d="M50 0C30 200 70 400 50 600 C30 800 50 800 50 800"
-              stroke="rgba(59, 130, 246, 0.2)"
-              strokeWidth="20"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            />
-            {/* Animated gradient overlay */}
-            <motion.path
-              d="M50 0C30 200 70 400 50 600 C30 800 50 800 50 800"
-              stroke="url(#blueGradient)"
-              strokeWidth="20"
-              strokeLinecap="round"
-              style={{
-                filter: "drop-shadow(0 0 10px rgba(59, 130, 246, 0.3))"
-              }}
-            />
-            <defs>
-              <linearGradient id="blueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: "rgba(59, 130, 246, 0.3)" }} />
-                <stop offset="50%" style={{ stopColor: "rgba(59, 130, 246, 0.1)" }} />
-                <stop offset="100%" style={{ stopColor: "rgba(59, 130, 246, 0.3)" }} />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Animated road markings */}
+        {/* Road path background */}
+        <motion.div 
+          className="absolute left-1/2 transform -translate-x-1/2 w-20 h-full"
+          style={{
+            background: "linear-gradient(to bottom, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1))",
+            borderRadius: "8px",
+            boxShadow: "0 0 30px rgba(59, 130, 246, 0.2)"
+          }}
+          initial={{ height: 0 }}
+          animate={{ height: "100%" }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+        >
+          {/* Road markings animation */}
           <div className="absolute inset-0 overflow-hidden">
             <div 
               className="w-full h-full"
               style={{
                 backgroundImage: "linear-gradient(to bottom, transparent 47%, rgba(255,255,255,0.15) 50%, transparent 53%)",
                 backgroundSize: "100% 24px",
-                animation: "moveRoadMarkings 2s linear infinite",
-                transform: "translateX(-50%) rotate(var(--rotation))",
-                transformOrigin: "center"
+                animation: "moveRoadMarkings 2s linear infinite"
               }}
             />
           </div>
