@@ -10,18 +10,18 @@ const timelineEvents = [
     icon: Briefcase,
   },
   {
-    year: "Mar 2021 - Dec 2021",
-    title: "Design Engineer",
-    subtitle: "Dispotronics",
-    description: "Reverse Engineering of existing product range of 20+ products. Design and development of custom wheelchair projects.",
-    icon: Briefcase,
-  },
-  {
     year: "2020 - 2022",
     title: "Master of Engineering",
     subtitle: "Deakin University",
     description: "Dual Specialization in Product Design and Additive Manufacturing. Vice Chancellor's Professional Excellence Scholar with 100% meritorious scholarship.",
     icon: GraduationCap,
+  },
+  {
+    year: "Mar 2021 - Dec 2021",
+    title: "Design Engineer",
+    subtitle: "Dispotronics",
+    description: "Reverse Engineering of existing product range of 20+ products. Design and development of custom wheelchair projects.",
+    icon: Briefcase,
   },
   {
     year: "Jul 2019 - Feb 2021",
@@ -37,7 +37,7 @@ const timelineEvents = [
     description: "Graduated with first class distinction (8.5 GPA). National finalist in Aakruti 2019, presented at Solidworks World 2019 in Dallas.",
     icon: GraduationCap,
   }
-];
+].reverse();
 
 export default function Timeline() {
   return (
