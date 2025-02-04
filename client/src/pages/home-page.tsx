@@ -3,12 +3,18 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu, Wrench, Bot } from "lucide-react";
 import { Link } from "wouter";
+import AdaptiveHeroImage from "@/components/adaptive-hero-image";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900/95">
       {/* Hero Section */}
-      <section className="relative h-[80vh] overflow-hidden bg-slate-900">
+      <section className="relative h-[80vh] overflow-hidden">
+        <AdaptiveHeroImage
+          src="/images/hero-image.jpg"
+          alt="Hero Image"
+          className="absolute inset-0 w-full h-full object-cover" //Added object-cover for better image fitting.
+        />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex h-full items-center justify-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
