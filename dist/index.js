@@ -28,12 +28,14 @@ __export(schema_exports, {
   selectUserSchema: () => selectUserSchema,
   users: () => users
 });
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, boolean, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 var users = pgTable("users", {
   id: serial("id").primaryKey(),
-  username: text("username").unique().notNull(),
-  password: text("password").notNull()
+  email: text("email").unique().notNull(),
+  password: text("password").notNull(),
+  isAdmin: boolean("is_admin").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow()
 });
 var projects = pgTable("projects", {
   id: serial("id").primaryKey(),
@@ -78,8 +80,8 @@ async function comparePasswords(supplied, stored) {
   const suppliedBuf = await scryptAsync(supplied, salt, 64);
   return timingSafeEqual(hashedBuf, suppliedBuf);
 }
-async function getUserByUsername(username) {
-  return db.select().from(users).where(eq(users.username, username)).limit(1);
+async function getUserByEmail(email) {
+  return db.select().from(users).where(eq(users.email, email)).limit(1);
 }
 function setupAuth(app2) {
   const store = new PostgresSessionStore({ pool, createTableIfMissing: true });
@@ -96,19 +98,68 @@ function setupAuth(app2) {
   app2.use(passport.initialize());
   app2.use(passport.session());
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
-      const [user] = await getUserByUsername(username);
-      if (!user || !await comparePasswords(password, user.password)) {
-        return done(null, false);
-      } else {
-        return done(null, user);
+    new LocalStrategy(
+      { usernameField: "email" },
+      async (email, password, done) => {
+        try {
+          const [user] = await getUserByEmail(email);
+          if (!user || !await comparePasswords(password, user.password)) {
+            return done(null, false);
+          } else {
+            return done(null, user);
+          }
+        } catch (err) {
+          return done(err);
+        }
       }
-    })
+    )
   );
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser(async (id, done) => {
-    const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
-    done(null, user);
+    try {
+      const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
+  });
+  async function initializeAdmin() {
+    try {
+      const [existingAdmin] = await getUserByEmail("sanika.chandrachud@outlook.com");
+      if (!existingAdmin) {
+        await db.insert(users).values({
+          email: "sanika.chandrachud@outlook.com",
+          password: await hashPassword("Abhijeet2024!"),
+          isAdmin: true
+        });
+        console.log("Admin account created successfully");
+      }
+    } catch (error) {
+      console.error("Error initializing admin:", error);
+    }
+  }
+  initializeAdmin().catch(console.error);
+  app2.get("/api/user", (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    res.json(req.user);
+  });
+  app2.post("/api/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+      req.logIn(user, (err2) => {
+        if (err2) return next(err2);
+        res.status(200).json(user);
+      });
+    })(req, res, next);
+  });
+  app2.post("/api/logout", (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.sendStatus(200);
+    });
   });
   app2.post("/api/register", async (req, res, next) => {
     const result = insertUserSchema.safeParse(req.body);
@@ -116,9 +167,9 @@ function setupAuth(app2) {
       const error = fromZodError(result.error);
       return res.status(400).send(error.toString());
     }
-    const [existingUser] = await getUserByUsername(result.data.username);
+    const [existingUser] = await getUserByEmail(result.data.email);
     if (existingUser) {
-      return res.status(400).send("Username already exists");
+      return res.status(400).send("Email already exists");
     }
     const [user] = await db.insert(users).values({
       ...result.data,
@@ -128,19 +179,6 @@ function setupAuth(app2) {
       if (err) return next(err);
       res.status(201).json(user);
     });
-  });
-  app2.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.status(200).json(req.user);
-  });
-  app2.post("/api/logout", (req, res, next) => {
-    req.logout((err) => {
-      if (err) return next(err);
-      res.sendStatus(200);
-    });
-  });
-  app2.get("/api/user", (req, res) => {
-    if (!req.isAuthenticated()) return res.sendStatus(401);
-    res.json(req.user);
   });
 }
 
